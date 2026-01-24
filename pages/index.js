@@ -180,6 +180,15 @@ export default function Home() {
                 key={activity.id}
                 name={activity.title}
                 description={activity.description}
+                icon={
+                  activity.title === "Own Pace Monday"
+                    ? "⏱️"
+                    : activity.title === "City To Trail"
+                      ? "⛰️"
+                      : activity.title === "Lunch & Learn"
+                        ? "🎧"
+                        : "🤝"
+                }
               />
             ))}
           </div>

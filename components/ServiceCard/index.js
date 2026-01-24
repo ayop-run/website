@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-const ServiceCard = ({ name, description }) => {
+const ServiceCard = ({ name, description, icon }) => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState();
 
@@ -16,9 +16,15 @@ const ServiceCard = ({ name, description }) => {
           : "border-slate-200/80 hover:border-slate-300"
       } link`}
     >
-      <p className="text-xs uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
-        Activity
-      </p>
+      <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
+        <span
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200/80 text-lg dark:border-slate-700"
+          aria-hidden="true"
+        >
+          {icon}
+        </span>
+        <p className="text-xs uppercase tracking-[0.3em]">Activity</p>
+      </div>
       <h1 className="mt-4 text-2xl font-semibold">{name ? name : "Heading"}</h1>
       <p className="mt-4 text-base leading-relaxed text-slate-600 dark:text-slate-300">
         {description
