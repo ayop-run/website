@@ -10,6 +10,20 @@ const App = ({ Component, pageProps }) => {
           href="https://fonts.cdnfonts.com/css/helvetica-neue-55"
           rel="stylesheet"
         />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/images/logo/favicon.png"
+        />
+        <link
+          rel="shortcut icon"
+          type="image/png"
+          href="/images/logo/favicon.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/images/logo/favicon.png"
+        />
       </Head>
       <ThemeProvider>
         <Component {...pageProps} />
