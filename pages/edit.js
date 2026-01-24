@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useTheme } from "next-themes";
 
 // Data
-import yourData from "../data/portfolio.json";
+import yourData from "../data/en.json";
 import Cursor from "../components/Cursor";
 
 const Edit = () => {

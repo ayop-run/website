@@ -1,16 +1,12 @@
 import React, { useRef, useState } from "react";
 import { getPostBySlug, getAllPosts } from "../../utils/api";
-import Header from "../../components/Header";
 import ContentSection from "../../components/ContentSection";
-import Footer from "../../components/Footer";
-import Head from "next/head";
-import { useIsomorphicLayoutEffect } from "../../utils";
+import { useIsomorphicLayoutEffect, ISOToDate } from "../../utils";
 import { stagger } from "../../animations";
 import Button from "../../components/Button";
 import BlogEditor from "../../components/BlogEditor";
 import { useRouter } from "next/router";
-import Cursor from "../../components/Cursor";
-import data from "../../data/portfolio.json";
+import Layout from "../../components/Layout";
 
 const BlogPost = ({ post }) => {
   const [showEditor, setShowEditor] = useState(false);
@@ -24,18 +20,7 @@ const BlogPost = ({ post }) => {
 
   return (
     <>
-      <Head>
-        <title>{"Blog - " + post.title}</title>
-        <meta name="description" content={post.preview} />
-      </Head>
-      {data.showCursor && <Cursor />}
-
-      <div
-        className={`container mx-auto px-4 tablet:px-6 laptop:px-8 mt-10 ${
-          data.showCursor && "cursor-none"
-        }`}
-      >
-        <Header isBlog={true} />
+      <Layout title={`Blog - ${post.title}`} description={post.preview} isBlog>
         <div className="mt-10 flex flex-col">
           <img
             className="w-full h-96 rounded-lg shadow-lg object-cover"
@@ -44,20 +29,24 @@ const BlogPost = ({ post }) => {
           ></img>
           <h1
             ref={textOne}
-            className="mt-10 text-4xl mob:text-2xl laptop:text-6xl text-bold"
+            className="mt-10 text-4xl tablet:text-5xl laptop:text-6xl font-bold mb-4"
           >
             {post.title}
           </h1>
-          <h2
+          <p
             ref={textTwo}
-            className="mt-2 text-xl max-w-4xl text-darkgray opacity-50"
+            className="mt-2 text-xl max-w-4xl opacity-70 leading-relaxed"
           >
             {post.tagline}
-          </h2>
+          </p>
+          {post.date && (
+            <span className="block mt-4 text-sm opacity-50">
+              {ISOToDate(post.date)}
+            </span>
+          )}
         </div>
         <ContentSection content={post.content}></ContentSection>
-        <Footer />
-      </div>
+      </Layout>
       {process.env.NODE_ENV === "development" && (
         <div className="fixed bottom-6 right-6">
           <Button onClick={() => setShowEditor(true)} type={"primary"}>

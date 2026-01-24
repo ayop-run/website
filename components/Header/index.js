@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "../Button";
-import data from "../../data/portfolio.json";
+import Logo from "../Logo";
+import data from "../../data/en.json";
 
 const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
   const router = useRouter();
@@ -26,9 +27,9 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
               {/* Only ONE h1 in the page */}
               <h1
                 onClick={() => router.push("/")}
-                className="font-semibold text-xl cursor-pointer"
+                className="cursor-pointer"
               >
-                {name}.
+                <Logo width={100} />
               </h1>
 
               <div className="flex items-center">
@@ -97,9 +98,9 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
       >
         <h1
           onClick={() => router.push("/")}
-          className="font-semibold text-2xl cursor-pointer"
+          className="cursor-pointer"
         >
-          {name}.
+          <Logo width={120} />
         </h1>
 
         <nav className="flex items-center gap-2">

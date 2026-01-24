@@ -1,21 +1,22 @@
 import React from "react";
 import Socials from "../Socials";
 import Link from "next/link";
-import Button from "../Button";
 
-const Footer = ({}) => {
+const Footer = () => {
   return (
     <>
       <div className="mt-5 laptop:mt-40 p-2 laptop:p-0">
         <div>
-          <h1 className="text-2xl text-bold">Contact.</h1>
+          <h2 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold mb-8">
+            Contact
+          </h2>
           <div className="mt-10">
-            <h1 className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl text-bold">
+            {/* <h2 className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl text-bold">
               LET&apos;S RUN
-            </h1>
-            <h1 className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl text-bold">
+            </h2>
+            <h2 className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl text-bold">
               TOGETHER
-            </h1>
+            </h2> */}
             {/* <Button type="primary">Schedule a call</Button> */}
             <div className="mt-10">
               <Socials />
@@ -23,12 +24,12 @@ const Footer = ({}) => {
           </div>
         </div>
       </div>
-      <h1 className="text-sm text-bold mt-2 laptop:mt-10 p-2 laptop:p-0">
+      <p className="text-sm font-medium mt-6 laptop:mt-10 p-2 laptop:p-0 opacity-70">
         Made With ❤ by{" "}
         <Link href="https://ayop.run" className="underline underline-offset-1">
           AYOP
         </Link>
-      </h1>
+      </p>
     </>
   );
 };

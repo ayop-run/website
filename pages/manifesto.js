@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
-import Cursor from "../components/Cursor";
-import Header from "../components/Header";
-import Socials from "../components/Socials";
 import Button from "../components/Button";
 import { useTheme } from "next-themes";
-import Head from "next/head";
 import { stagger } from "../animations";
 import { useIsomorphicLayoutEffect } from "../utils";
+import Layout from "../components/Layout";
 // Data
-import data from "../data/portfolio.json";
+import data from "../data/en.json";
 
 const Manifesto = () => {
   const router = useRouter();
@@ -31,11 +28,11 @@ const Manifesto = () => {
     }
   }, []);
 
-  // Split manifesto into paragraphs (double newlines) and clean up single newlines
+  // Split manifesto into paragraphs (double newlines) and preserve single newlines for line breaks
   const manifestoParagraphs = data.manifesto
     ? data.manifesto
         .split(/\n\n+/)
-        .map((para) => para.replace(/\n/g, " ").trim())
+        .map((para) => para.trim())
         .filter((para) => para !== "")
     : [];
 
@@ -48,16 +45,7 @@ const Manifesto = () => {
           </Button>
         </div>
       )}
-      {data.showCursor && <Cursor />}
-      <div
-        className={`container mx-auto px-4 tablet:px-6 laptop:px-8 mb-10 ${
-          data.showCursor && "cursor-none"
-        }`}
-      >
-        <Head>
-          <title>Manifesto - {data.name}</title>
-        </Head>
-        <Header isBlog />
+      <Layout title="Manifesto" isBlog>
         {mount && (
           <main className="mt-10 laptop:mt-20">
             <section className="p-2 laptop:p-0">
@@ -73,21 +61,17 @@ const Manifesto = () => {
                   {manifestoParagraphs.map((paragraph, index) => (
                     <p
                       key={index}
-                      className="text-base tablet:text-lg laptop:text-xl leading-relaxed opacity-90"
+                      className="text-base tablet:text-lg laptop:text-xl leading-relaxed opacity-90 whitespace-pre-line"
                     >
                       {paragraph}
                     </p>
                   ))}
                 </div>
               </div>
-
-              <div className="mt-16 laptop:mt-20 flex justify-center">
-                <Socials />
-              </div>
             </section>
           </main>
         )}
-      </div>
+      </Layout>
     </>
   );
 };
