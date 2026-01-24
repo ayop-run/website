@@ -12,7 +12,7 @@ import Link from "next/link";
 import Cursor from "../components/Cursor";
 
 // Local Data
-import data from "../data/portfolio.json";
+import data from "../data/en.json";
 
 export default function Home() {
   // Ref
@@ -97,6 +97,7 @@ export default function Home() {
 
           <div className="mt-8 laptop:mt-10 p-2 laptop:p-0">
             <Button
+              classes="px-6 laptop:px-8"
               type="primary"
               onClick={() => {
                 const stravaLink = data.socials.find(
@@ -127,7 +128,7 @@ export default function Home() {
 
         {/* What We Do Section */}
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
-          <h1 className="tablet:m-10 text-2xl text-bold">What We Do</h1>
+          <h1 className="tablet:m-10 text-2xl text-bold">Our Activities</h1>
           <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
             {data.activities.map((activity) => (
               <ServiceCard
@@ -162,7 +163,7 @@ export default function Home() {
         )}
         {/* Why AYOP Section */}
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-          <h1 className="tablet:m-10 text-2xl text-bold">Why AYOP?</h1>
+          <h1 className="tablet:m-10 text-2xl text-bold">Why we run</h1>
           <p className="tablet:m-10 mt-2 text-base laptop:text-xl w-full laptop:w-3/5">
             {data.aboutpara}
           </p>

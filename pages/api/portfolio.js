@@ -2,7 +2,7 @@ import fs from "fs";
 import { join } from "path";
 
 export default function handler(req, res) {
-  const portfolioData = join(process.cwd(), "/data/portfolio.json");
+  const portfolioData = join(process.cwd(), "/data/en.json");
   if (process.env.NODE_ENV === "development") {
     if (req.method === "POST") {
       fs.writeFileSync(

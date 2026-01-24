@@ -38,7 +38,6 @@ AYOP is a community that runs at our own pace — together. We create meaningful
 
 ```bash
 git clone git@github.com:ayop-run/website.git
-cd ayop
 ```
 
 2. Install dependencies:
@@ -57,7 +56,7 @@ yarn dev
 
 ## Configuration
 
-Edit `data/portfolio.json` to customize:
+Edit `data/en.json` to customize:
 
 - Team members and their information
 - Activities and descriptions

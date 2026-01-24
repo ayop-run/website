@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 import Head from "next/head";
 
 // Data
-import data from "../data/portfolio.json";
+import data from "../data/en.json";
 
 const About = () => {
   const router = useRouter();
@@ -51,9 +51,9 @@ const About = () => {
                 About.
               </h1>
 
-              {data.aboutpara && (
+              {data.aboutparaTwo && (
                 <p className="tablet:m-10 mt-4 text-lg tablet:text-xl laptop:text-2xl w-full laptop:w-4/5 mb-16 laptop:mb-20 leading-relaxed opacity-90">
-                  {data.aboutpara}
+                  {data.aboutparaTwo}
                 </p>
               )}
             </section>

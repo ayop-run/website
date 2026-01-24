@@ -6,7 +6,8 @@ import { stagger } from "../../animations";
 import Button from "../../components/Button";
 import Cursor from "../../components/Cursor";
 import Header from "../../components/Header";
-import data from "../../data/portfolio.json";
+import Socials from "../../components/Socials";
+import data from "../../data/en.json";
 import { ISOToDate, useIsomorphicLayoutEffect } from "../../utils";
 import { getAllPosts } from "../../utils/api";
 const Blog = ({ posts }) => {
@@ -79,52 +80,59 @@ const Blog = ({ posts }) => {
         >
           <Header isBlog={true}></Header>
           <main className="mt-10 laptop:mt-20">
-            <h1 className="p-2 laptop:p-0 text-4xl tablet:text-5xl laptop:text-6xl font-bold mb-12 laptop:mb-16">
-              Blog.
-            </h1>
-            <div className="mt-10 grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-8 laptop:gap-10">
-              {posts &&
-                posts.map((post) => (
-                  <article
-                    className="cursor-pointer relative group transition-all hover:scale-[1.02]"
-                    key={post.slug}
-                    onClick={() => Router.push(`/blog/${post.slug}`)}
-                  >
-                    <div className="relative overflow-hidden rounded-lg shadow-md group-hover:shadow-lg transition-shadow">
-                      <div className="relative w-full h-64 laptop:h-72">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      {process.env.NODE_ENV === "development" && mounted && (
-                        <div className="absolute top-2 right-2 z-10">
-                          <Button
-                            onClick={(e) => {
-                              deleteBlog(post.slug);
-                              e.stopPropagation();
-                            }}
-                            type={"primary"}
-                          >
-                            Delete
-                          </Button>
+            <section className="p-2 laptop:p-0">
+              <h1 className="text-4xl tablet:text-5xl laptop:text-6xl font-bold mb-12 laptop:mb-16">
+                Blog.
+              </h1>
+
+              <div className="mt-10 grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-8 laptop:gap-10">
+                {posts &&
+                  posts.map((post) => (
+                    <article
+                      className="cursor-pointer relative group transition-all hover:scale-[1.02]"
+                      key={post.slug}
+                      onClick={() => Router.push(`/blog/${post.slug}`)}
+                    >
+                      <div className="relative overflow-hidden rounded-lg shadow-md group-hover:shadow-lg transition-shadow">
+                        <div className="relative w-full h-64 laptop:h-72">
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                          />
                         </div>
-                      )}
-                    </div>
-                    <h2 className="mt-6 text-xl tablet:text-2xl laptop:text-3xl font-bold leading-tight">
-                      {post.title}
-                    </h2>
-                    <p className="mt-3 opacity-70 text-base tablet:text-lg leading-relaxed line-clamp-3">
-                      {post.preview}
-                    </p>
-                    <span className="block mt-4 text-sm opacity-50">
-                      {ISOToDate(post.date)}
-                    </span>
-                  </article>
-                ))}
-            </div>
+                        {process.env.NODE_ENV === "development" && mounted && (
+                          <div className="absolute top-2 right-2 z-10">
+                            <Button
+                              onClick={(e) => {
+                                deleteBlog(post.slug);
+                                e.stopPropagation();
+                              }}
+                              type={"primary"}
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                      <h2 className="mt-6 text-xl tablet:text-2xl laptop:text-3xl font-bold leading-tight">
+                        {post.title}
+                      </h2>
+                      <p className="mt-3 opacity-70 text-base tablet:text-lg leading-relaxed line-clamp-3">
+                        {post.preview}
+                      </p>
+                      <span className="block mt-4 text-sm opacity-50">
+                        {ISOToDate(post.date)}
+                      </span>
+                    </article>
+                  ))}
+              </div>
+
+              <div className="mt-16 laptop:mt-20 flex justify-center">
+                <Socials />
+              </div>
+            </section>
           </main>
         </div>
         {process.env.NODE_ENV === "development" && mounted && (

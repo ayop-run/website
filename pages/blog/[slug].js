@@ -10,7 +10,7 @@ import Button from "../../components/Button";
 import BlogEditor from "../../components/BlogEditor";
 import { useRouter } from "next/router";
 import Cursor from "../../components/Cursor";
-import data from "../../data/portfolio.json";
+import data from "../../data/en.json";
 
 const BlogPost = ({ post }) => {
   const [showEditor, setShowEditor] = useState(false);
@@ -25,7 +25,7 @@ const BlogPost = ({ post }) => {
   return (
     <>
       <Head>
-        <title>{"Blog - " + post.title}</title>
+        <title>{`Blog - ${post.title}`}</title>
         <meta name="description" content={post.preview} />
       </Head>
       {data.showCursor && <Cursor />}

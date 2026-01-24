@@ -7,10 +7,6 @@ const App = ({ Component, pageProps }) => {
     <>
       <Head>
         <link
-          href="https://fonts.cdnfonts.com/css/helvetica-neue-55"
-          rel="stylesheet"
-        />
-        <link
           rel="icon"
           type="image/png"
           href="/images/logo/favicon.png"

@@ -9,7 +9,7 @@ import Head from "next/head";
 import { stagger } from "../animations";
 import { useIsomorphicLayoutEffect } from "../utils";
 // Data
-import data from "../data/portfolio.json";
+import data from "../data/en.json";
 
 const Manifesto = () => {
   const router = useRouter();
