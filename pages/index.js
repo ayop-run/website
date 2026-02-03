@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import ServiceCard from "../components/ServiceCard";
 import WorkCard from "../components/WorkCard";
 import { useIsomorphicLayoutEffect } from "../utils";
@@ -6,6 +6,7 @@ import { stagger } from "../animations";
 import Button from "../components/Button";
 import Link from "next/link";
 import Layout from "../components/Layout";
+import Image from "next/image";
 
 // Local Data
 import data from "../data/en.json";
@@ -14,8 +15,12 @@ export default function Home() {
   // Ref
   const workRef = useRef();
   const aboutRef = useRef();
+  const activitiesRef = useRef();
   const textOne = useRef();
   const textTwo = useRef();
+  const heroRef = useRef();
+  const lastMouseYRef = useRef(0);
+  const scrollTimeoutRef = useRef(null);
 
   // Handling Scroll
   const handleWorkScroll = () => {
@@ -35,6 +40,16 @@ export default function Home() {
       behavior: "smooth",
     });
   };
+
+  const handleActivitiesScroll = useCallback(() => {
+    if (activitiesRef.current) {
+      window.scrollTo({
+        top: activitiesRef.current.offsetTop,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     if (textOne.current && textTwo.current) {
@@ -59,41 +74,104 @@ export default function Home() {
     }
   }, []);
 
+  // Mouse movement handler for scroll navigation
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const currentY = e.clientY;
+      const lastY = lastMouseYRef.current;
+
+      // Check if mouse is moving down and we're in the hero section
+      if (heroRef.current && lastY > 0) {
+        const heroRect = heroRef.current.getBoundingClientRect();
+        const isInHero =
+          e.clientY >= heroRect.top &&
+          e.clientY <= heroRect.bottom &&
+          e.clientX >= heroRect.left &&
+          e.clientX <= heroRect.right;
+
+        // If mouse moves down significantly (more than 80px) in hero section
+        // Use debounce to prevent multiple scrolls
+        if (isInHero && currentY - lastY > 80) {
+          if (scrollTimeoutRef.current) {
+            clearTimeout(scrollTimeoutRef.current);
+          }
+
+          scrollTimeoutRef.current = setTimeout(() => {
+            handleActivitiesScroll();
+          }, 100);
+        }
+      }
+
+      lastMouseYRef.current = currentY;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [handleActivitiesScroll]);
+
   return (
     <Layout
       handleWorkScroll={handleWorkScroll}
       handleAboutScroll={handleAboutScroll}
     >
-      {/* Hero Section */}
-      <div className="laptop:mt-20 mt-10">
-        <div className="mt-5 p-2 laptop:p-0">
-          <h1
-            ref={textOne}
-            className="text-4xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl font-bold leading-tight mb-4 laptop:mb-6"
-          >
-            {data.headerTaglineOne}
-          </h1>
-          <h2
-            ref={textTwo}
-            className="text-lg tablet:text-xl laptop:text-2xl laptopl:text-3xl font-normal opacity-90 leading-relaxed max-w-3xl"
-          >
-            {data.headerTaglineTwo}
-          </h2>
-        </div>
+      {/* Hero Section - Full Size with Image */}
+      <div
+        ref={heroRef}
+        className="relative w-full h-screen -mx-4 tablet:-mx-6 laptop:-mx-8 mt-0 overflow-hidden"
+      >
+        {/* Background Image */}
+        <img
+          src="/images/hero/main-track.jpg"
+          alt="Main Track"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          style={{ filter: "grayscale(100%)" }}
+        />
 
-        <div className="mt-8 laptop:mt-10 p-2 laptop:p-0">
-          <Button
-            classes="px-6 laptop:px-8"
-            type="primary"
-            onClick={() => {
-              const stravaLink = data.socials.find(
-                (s) => s.title === "Strava",
-              )?.link;
-              if (stravaLink) window.open(stravaLink);
-            }}
-          >
-            {data.headerTaglineThree || "Join the next session →"}
-          </Button>
+        {/* Black and White Gradient Overlay */}
+        <div
+          className="absolute inset-0 w-full h-full z-[1]"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%)",
+          }}
+        />
+
+        {/* Content Overlay */}
+        <div className="relative z-10 h-full flex flex-col justify-center items-start px-4 tablet:px-6 laptop:px-8">
+          <div className="mt-5 p-2 laptop:p-0">
+            <h1
+              ref={textOne}
+              className="text-4xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl font-bold leading-tight mb-4 laptop:mb-6 text-white"
+            >
+              {data.headerTaglineOne}
+            </h1>
+            <h2
+              ref={textTwo}
+              className="text-lg tablet:text-xl laptop:text-2xl laptopl:text-3xl font-normal opacity-90 leading-relaxed max-w-3xl text-white"
+            >
+              {data.headerTaglineTwo}
+            </h2>
+          </div>
+
+          <div className="mt-8 laptop:mt-10 p-2 laptop:p-0">
+            <Button
+              classes="px-6 laptop:px-8"
+              type="primary"
+              onClick={() => {
+                const stravaLink = data.socials.find(
+                  (s) => s.title === "Strava",
+                )?.link;
+                if (stravaLink) window.open(stravaLink);
+              }}
+            >
+              {data.headerTaglineThree || "Join the next session →"}
+            </Button>
+          </div>
         </div>
       </div>
       {/* <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
@@ -113,7 +191,7 @@ export default function Home() {
       </div> */}
 
       {/* What We Do Section */}
-      <div className="mt-16 laptop:mt-24 p-2 laptop:p-0">
+      <div ref={activitiesRef} className="mt-16 laptop:mt-24 p-2 laptop:p-0">
         <h2 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold mb-12 laptop:mb-16">
           {data.activitiesTitle}
         </h2>
