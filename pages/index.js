@@ -119,40 +119,23 @@ export default function Home() {
       handleWorkScroll={handleWorkScroll}
       handleAboutScroll={handleAboutScroll}
     >
-      {/* Hero Section - Full Size with Image */}
+      {/* Hero Section */}
       <div
         ref={heroRef}
         className="relative w-full h-screen -mx-4 tablet:-mx-6 laptop:-mx-8 mt-0 overflow-hidden"
       >
-        {/* Background Image */}
-        <img
-          src="/images/hero/main-track.jpg"
-          alt="Main Track"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          style={{ filter: "grayscale(100%)" }}
-        />
-
-        {/* Black and White Gradient Overlay */}
-        <div
-          className="absolute inset-0 w-full h-full z-[1]"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%)",
-          }}
-        />
-
-        {/* Content Overlay */}
-        <div className="relative z-10 h-full flex flex-col justify-center items-start px-4 tablet:px-6 laptop:px-8">
+        {/* Content */}
+        <div className="relative h-full flex flex-col justify-center items-start px-4 tablet:px-6 laptop:px-8">
           <div className="mt-5 p-2 laptop:p-0">
             <h1
               ref={textOne}
-              className="text-4xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl font-bold leading-tight mb-4 laptop:mb-6 text-white"
+              className="text-4xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl font-bold leading-tight mb-4 laptop:mb-6"
             >
               {data.headerTaglineOne}
             </h1>
             <h2
               ref={textTwo}
-              className="text-lg tablet:text-xl laptop:text-2xl laptopl:text-3xl font-normal opacity-90 leading-relaxed max-w-3xl text-white"
+              className="text-lg tablet:text-xl laptop:text-2xl laptopl:text-3xl font-normal opacity-90 leading-relaxed max-w-3xl"
             >
               {data.headerTaglineTwo}
             </h2>
