@@ -16,6 +16,12 @@ const nextConfig = {
         destination: "https://www.strava.com/clubs/1235607",
         permanent: true,
       },
+      {
+        source: "/after-sunset-run-1",
+        destination:
+          "https://www.eventbrite.co.uk/e/ramadanmiles-community-sunset-experience-tickets-1982296810121",
+        permanent: true,
+      },
     ];
   },
 };
