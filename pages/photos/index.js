@@ -56,7 +56,7 @@ function PhotoAlbumCard({ photo, adminUnlocked }) {
     photo.photographerDisplayName,
     photo.photographerInstagramUsername
   );
-  const preview = photo.description || albumMeta(photo);
+  const description = photo.description?.trim() ? photo.description : null;
 
   return (
     <article
@@ -88,9 +88,11 @@ function PhotoAlbumCard({ photo, adminUnlocked }) {
       <h2 className="mt-6 text-xl tablet:text-2xl laptop:text-3xl font-bold leading-tight">
         {photo.title}
       </h2>
-      <p className="mt-3 opacity-70 text-base tablet:text-lg leading-relaxed line-clamp-3">
-        {preview}
-      </p>
+      {description && (
+        <p className="mt-3 opacity-70 text-base tablet:text-lg leading-relaxed line-clamp-3">
+          {description}
+        </p>
+      )}
       {credit && (
         <div className="mt-3 text-sm opacity-90">
           {photo.photographerInstagramUsername ? (
