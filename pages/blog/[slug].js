@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import BlogEditor from "../../components/BlogEditor";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
+import data from "../../data/en.json";
 
 const BlogPost = ({ post }) => {
   const [showEditor, setShowEditor] = useState(false);
@@ -15,8 +16,16 @@ const BlogPost = ({ post }) => {
   const router = useRouter();
 
   useIsomorphicLayoutEffect(() => {
+    if (!data.showBlog) {
+      void router.replace("/");
+      return;
+    }
     stagger([textOne.current, textTwo.current], { y: 30 }, { y: 0 });
-  }, []);
+  }, [router]);
+
+  if (!data.showBlog) {
+    return null;
+  }
 
   return (
     <>
@@ -26,7 +35,7 @@ const BlogPost = ({ post }) => {
             className="w-full h-96 rounded-lg shadow-lg object-cover"
             src={post.image}
             alt={post.title}
-          ></img>
+          />
           <h1
             ref={textOne}
             className="mt-10 text-4xl tablet:text-5xl laptop:text-6xl font-bold mb-4"
@@ -45,7 +54,7 @@ const BlogPost = ({ post }) => {
             </span>
           )}
         </div>
-        <ContentSection content={post.content}></ContentSection>
+        <ContentSection content={post.content} />
       </Layout>
       {process.env.NODE_ENV === "development" && (
         <div className="fixed bottom-6 right-6">

@@ -75,6 +75,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
               <div className="grid grid-cols-1">
                 <Button onClick={() => router.push("/")} classes="no-cursor-link">Home</Button>
                 <Button onClick={() => router.push("/about")} classes="no-cursor-link">About</Button>
+                <Button onClick={() => router.push("/photos")} classes="no-cursor-link">Photos</Button>
                 {showBlog && (
                   <Button onClick={() => router.push("/blog")} classes="no-cursor-link">Blog</Button>
                 )}
@@ -106,6 +107,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
         <nav className="flex items-center gap-2">
           <Button onClick={() => router.push("/")}>Home</Button>
           <Button onClick={() => router.push("/about")}>About</Button>
+          <Button onClick={() => router.push("/photos")}>Photos</Button>
           {showBlog && (
             <Button onClick={() => router.push("/blog")}>Blog</Button>
           )}

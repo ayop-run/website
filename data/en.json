@@ -4,7 +4,7 @@
   "headerTaglineTwo": "At Your Own Pace, together.",
   "headerTaglineThree": "Join the next session →",
   "showCursor": true,
-  "showBlog": true,
+  "showBlog": false,
   "darkMode": true,
   "showResume": true,
   "socials": [
@@ -52,32 +52,25 @@
     },
     {
       "id": "4",
-      "title": "Bridge The Gap",
+      "title": "Community Run Events",
       "description": "Through curated run-led events, we connect communities, cultures, and brands — using movement as the starting point for meaningful exchange. From pop-up runs to cultural collaborations.",
       "icon": "community"
     }
   ],
+  "showOurTeam": false,
   "teams": [
     {
       "id": "4f52c576-91b9-48f5-93cd-20d3a4bba59d",
       "name": "Nacho",
-      "bio": "Co-Coach",
+      "bio": "Coach",
       "image": "",
       "instagram": "https://www.instagram.com/nachogon1/",
       "tag": "Track"
     },
     {
-      "id": "a392a26c-2aaa-4525-8313-52d4d2918cf3",
-      "name": "Bileg",
-      "bio": "Co-Coach",
-      "image": "",
-      "instagram": "https://www.instagram.com/bileg_runs/",
-      "tag": "Track"
-    },
-    {
       "id": "0bb7222d-7a1d-4778-bc5b-f3f9a2169f8a",
       "name": "HyeYeon",
-      "bio": "Team Lead & Photographer & Videographer",
+      "bio": "Team Lead",
       "image": "",
       "instagram": "https://www.instagram.com/anneinberlin_",
       "tag": "Media"
@@ -95,7 +88,7 @@
       "name": "David",
       "bio": "Photographer",
       "image": "",
-      "instagram": "https://www.instagram.com/wise9_david",
+      "instagram": "https://www.instagram.com/hukky.jpg/",
       "tag": "Media"
     },
     {

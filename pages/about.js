@@ -17,8 +17,12 @@ const About = () => {
     setMount(true);
   }, []);
 
-  // Collect tags dynamically from data
-  const tags = Array.from(new Set(data.teams.map((member) => member.tag)));
+  const showOurTeam = data.showOurTeam !== false;
+  const teams = data.teams || [];
+  const tags =
+    showOurTeam && teams.length > 0
+      ? Array.from(new Set(teams.map((member) => member.tag)))
+      : [];
 
   return (
     <>
@@ -47,14 +51,14 @@ const About = () => {
             </section>
 
             {/* TEAM SECTION */}
-            {data.teams && data.teams.length > 0 && (
+            {showOurTeam && teams.length > 0 && (
               <section className="mt-16 laptop:mt-24 p-2 laptop:p-0">
                 <h2 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold mb-12 laptop:mb-16">
                   Our Team
                 </h2>
 
                 {tags.map((tag) => {
-                  const membersInTag = data.teams.filter(
+                  const membersInTag = teams.filter(
                     (member) => member.tag === tag,
                   );
                   if (membersInTag.length === 0) return null;

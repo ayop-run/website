@@ -485,6 +485,21 @@ const Edit = () => {
         {currentTabs === "TEAMS" && (
           <>
             <div className="mt-10">
+              <label
+                htmlFor="edit-show-our-team"
+                className="mb-8 flex cursor-pointer items-center gap-3"
+              >
+                <input
+                  id="edit-show-our-team"
+                  type="checkbox"
+                  checked={data.showOurTeam !== false}
+                  onChange={(e) =>
+                    setData({ ...data, showOurTeam: e.target.checked })
+                  }
+                  className="h-4 w-4"
+                />
+                <span className="text-lg">Show Our Team on the About page</span>
+              </label>
               {(data.teams || []).map((team, index) => (
                 <div key={team.id}>
                   <div className="flex items-center justify-between">
