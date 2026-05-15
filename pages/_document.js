@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="en" suppressHydrationWarning>
       <Head>
         <link
           href="https://fonts.cdnfonts.com/css/helvetica-neue-55"

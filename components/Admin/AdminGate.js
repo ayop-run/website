@@ -128,7 +128,7 @@ export default function AdminGate({ children, showSignOut = true }) {
             className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
           />
         </label>
-        <label htmlFor="admin-gate-remember" className="flex cursor-pointer items-start gap-2 text-sm">
+        <label htmlFor="admin-gate-remember" className="flex items-start gap-2 text-sm">
           <input
             id="admin-gate-remember"
             type="checkbox"

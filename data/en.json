@@ -3,7 +3,6 @@
   "headerTaglineOne": "Run Berlin, Your Way.",
   "headerTaglineTwo": "At Your Own Pace, together.",
   "headerTaglineThree": "Join the next session →",
-  "showCursor": true,
   "showBlog": false,
   "darkMode": true,
   "showResume": true,
@@ -52,7 +51,7 @@
     },
     {
       "id": "4",
-      "title": "Community Run Events",
+      "title": "Special Runs",
       "description": "Through curated run-led events, we connect communities, cultures, and brands — using movement as the starting point for meaningful exchange. From pop-up runs to cultural collaborations.",
       "icon": "community"
     }

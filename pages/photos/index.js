@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Button, Input } from "@heroui/react";
 import Layout from "../../components/Layout";
 import { CATEGORY_LABELS, FILTER_YEARS, PHOTO_CATEGORIES } from "../../lib/photos/constants";
 import {
@@ -60,7 +61,7 @@ function PhotoAlbumCard({ photo, adminUnlocked }) {
 
   return (
     <article
-      className="cursor-pointer relative group transition-all hover:scale-[1.02]"
+      className="relative group transition-all hover:scale-[1.02]"
       onClick={() => openExternalAlbum(photo.externalAlbumUrl)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -226,19 +227,12 @@ export default function PhotosListPage() {
             </p>
             {adminUnlocked && (
               <div className="flex flex-col gap-2 laptop:items-end">
-                <Link
-                  href="/photos/new"
-                  className="inline-flex min-h-[2.75rem] items-center justify-center rounded-lg border-2 border-black bg-black px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 dark:border-white dark:bg-white dark:text-black dark:hover:bg-neutral-200"
-                >
+                <Button color="primary" variant="solid" onPress={() => router.push("/photos/new")}>
                   Add entry
-                </Link>
-                <button
-                  type="button"
-                  onClick={onAdminSignOut}
-                  className="text-sm underline opacity-70 hover:opacity-100 laptop:text-right"
-                >
+                </Button>
+                <Button variant="light" className="self-end" onPress={onAdminSignOut}>
                   Sign out
-                </button>
+                </Button>
               </div>
             )}
           </div>
@@ -295,35 +289,39 @@ export default function PhotosListPage() {
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-sm tablet:col-span-2 laptop:col-span-1">
+          <label
+            htmlFor="photos-filter-search"
+            className="flex flex-col gap-1 text-sm tablet:col-span-2 laptop:col-span-1"
+          >
             <span className="opacity-80">Search</span>
-            <input
+            <Input
+              id="photos-filter-search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Title, description, photographer"
-              className="rounded border border-black/20 dark:border-white/20 bg-transparent px-2 py-2"
+              variant="bordered"
+              size="sm"
+              className="w-full"
             />
           </label>
-          <div className="tablet:col-span-2 laptop:col-span-4 flex gap-2">
-            <button
-              type="submit"
-              className="rounded-lg border-2 border-black bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 dark:border-white dark:bg-white dark:text-black dark:hover:bg-neutral-200"
-            >
+          <div className="tablet:col-span-2 laptop:col-span-4 flex flex-wrap gap-2">
+            <Button type="submit" color="primary" variant="solid" size="sm">
               Apply
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              onClick={() => {
+              variant="bordered"
+              size="sm"
+              onPress={() => {
                 setYear("");
                 setMonth("");
                 setCategory("");
                 setQ("");
                 router.push("/photos", undefined, { shallow: true });
               }}
-              className="rounded-lg border-2 border-black/20 px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90 dark:border-white/25"
             >
               Clear
-            </button>
+            </Button>
           </div>
         </form>
 

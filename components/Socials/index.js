@@ -5,7 +5,7 @@ import yourData from "../../data/en.json";
 
 const Socials = ({ className }) => {
   return (
-    <div className={`${className} flex flex-wrap mob:flex-nowrap link`}>
+    <div className={`${className} flex flex-wrap mob:flex-nowrap`}>
       {yourData.socials.map((social, index) => (
         <Button key={index} onClick={() => window.open(social.link)}>
           {social.title}

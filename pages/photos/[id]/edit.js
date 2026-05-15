@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+  Button,
+  Input,
+  Label,
+  ListBox,
+  Select,
+  TextArea,
+} from "@heroui/react";
 import Layout from "../../../components/Layout";
 import PhotographerFormFields from "../../../components/photos/PhotographerFormFields";
 import { CATEGORY_LABELS, PHOTO_CATEGORIES } from "../../../lib/photos/constants";
@@ -105,6 +113,8 @@ export default function PhotoEditPage() {
     }
   };
 
+  const fieldClass = "flex flex-col gap-1.5";
+
   return (
     <Layout title="Edit photo entry" description="Edit album link">
       <main className="mt-10 laptop:mt-16 max-w-xl mx-auto">
@@ -122,127 +132,189 @@ export default function PhotoEditPage() {
         )}
         {!loading && !error && (
           <form onSubmit={onSubmit} className="space-y-4">
-            <label className="block text-sm">
-              <span className="opacity-80">Album URL</span>
-              <input
-                required
+            <div className={fieldClass}>
+              <Label htmlFor="photos-edit-album-url" className="text-sm opacity-80">
+                Album URL
+              </Label>
+              <Input
+                id="photos-edit-album-url"
+                isRequired
                 type="url"
                 value={form.externalAlbumUrl}
                 onChange={onChange("externalAlbumUrl")}
-                className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
+                variant="bordered"
+                size="sm"
+                className="w-full"
+                placeholder="https://"
               />
-            </label>
-            <label className="block text-sm">
-              <span className="opacity-80">Cover image URL (optional)</span>
-              <input
+            </div>
+
+            <div className={fieldClass}>
+              <Label htmlFor="photos-edit-cover-url" className="text-sm opacity-80">
+                Cover image URL (optional)
+              </Label>
+              <Input
+                id="photos-edit-cover-url"
                 type="url"
                 value={form.coverImageUrl}
                 onChange={onChange("coverImageUrl")}
-                className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
+                variant="bordered"
+                size="sm"
+                className="w-full"
                 placeholder="https://… direct image link"
               />
-            </label>
-            <label className="block text-sm">
-              <span className="opacity-80">Title</span>
-              <input
-                required
+            </div>
+
+            <div className={fieldClass}>
+              <Label htmlFor="photos-edit-title" className="text-sm opacity-80">
+                Title
+              </Label>
+              <Input
+                id="photos-edit-title"
+                isRequired
                 value={form.title}
                 onChange={onChange("title")}
-                className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
+                variant="bordered"
+                size="sm"
+                className="w-full"
               />
-            </label>
-            <label className="block text-sm">
-              <span className="opacity-80">Session date</span>
-              <input
-                required
+            </div>
+
+            <div className={fieldClass}>
+              <Label htmlFor="photos-edit-shot-on" className="text-sm opacity-80">
+                Session date
+              </Label>
+              <Input
+                id="photos-edit-shot-on"
+                isRequired
                 type="date"
                 value={form.shotOn}
                 onChange={onChange("shotOn")}
-                className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
+                variant="bordered"
+                size="sm"
+                className="w-full"
               />
-            </label>
-            <p className="text-xs opacity-60">
+            </div>
+            <p className="text-xs opacity-60 -mt-2">
               Changing the session date will change the public URL for this entry.
             </p>
-            <label className="block text-sm">
-              <span className="opacity-80">Category</span>
-              <select
-                value={form.category}
-                onChange={onChange("category")}
-                className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
+
+            <div className={fieldClass}>
+              <Label id="photos-edit-category-label" className="text-sm opacity-80">
+                Category
+              </Label>
+              <Select
+                aria-labelledby="photos-edit-category-label"
+                selectedKey={form.category}
+                onSelectionChange={(key) => {
+                  if (key != null) setForm((f) => ({ ...f, category: String(key) }));
+                }}
+                variant="bordered"
+                fullWidth
+                size="sm"
               >
-                {PHOTO_CATEGORIES.map((key) => (
-                  <option key={key} value={key}>
-                    {CATEGORY_LABELS[key]}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="block text-sm">
-              <span className="opacity-80">Description</span>
-              <textarea
+                <Select.Trigger className="w-full">
+                  <Select.Value />
+                  <Select.Indicator />
+                </Select.Trigger>
+                <Select.Popover>
+                  <ListBox>
+                    {PHOTO_CATEGORIES.map((key) => (
+                      <ListBox.Item key={key} id={key} textValue={CATEGORY_LABELS[key]}>
+                        {CATEGORY_LABELS[key]}
+                      </ListBox.Item>
+                    ))}
+                  </ListBox>
+                </Select.Popover>
+              </Select>
+            </div>
+
+            <div className={fieldClass}>
+              <Label htmlFor="photos-edit-description" className="text-sm opacity-80">
+                Description
+              </Label>
+              <TextArea
+                id="photos-edit-description"
                 value={form.description}
                 onChange={onChange("description")}
-                rows={3}
-                className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
+                variant="bordered"
+                size="sm"
+                className="w-full min-h-[5.5rem]"
               />
-            </label>
+            </div>
+
             <PhotographerFormFields
               photographerDisplayName={form.photographerDisplayName}
               photographerInstagramUsername={form.photographerInstagramUsername}
               onChange={onChange}
               nameOptionalLabel={false}
             />
+
             {!adminSession && (
               <>
-                <label htmlFor="photos-edit-gate-username" className="block text-sm">
-                  <span className="opacity-80">Account name (for saved password)</span>
-                  <input
+                <div className={fieldClass}>
+                  <Label htmlFor="photos-edit-gate-username" className="text-sm opacity-80">
+                    Account name (for saved password)
+                  </Label>
+                  <Input
                     id="photos-edit-gate-username"
                     name="username"
                     type="text"
-                    readOnly
+                    isReadOnly
                     autoComplete="username"
                     defaultValue="AYOP admin"
-                    className="mt-1 w-full cursor-default rounded border border-black/20 bg-black/[0.04] px-3 py-2 text-sm dark:border-white/20 dark:bg-white/[0.06]"
+                    variant="bordered"
+                    size="sm"
+                    className="w-full"
                     aria-readonly="true"
                   />
-                </label>
-                <label htmlFor="photos-edit-password" className="block text-sm">
-                  <span className="opacity-80">Admin password</span>
-                  <input
+                </div>
+                <div className={fieldClass}>
+                  <Label htmlFor="photos-edit-password" className="text-sm opacity-80">
+                    Admin password
+                  </Label>
+                  <Input
                     id="photos-edit-password"
                     name="password"
-                    required
+                    isRequired
                     type="password"
                     autoComplete="current-password"
                     value={form.password}
                     onChange={onChange("password")}
-                    className="mt-1 w-full rounded border border-black/20 dark:border-white/20 bg-transparent px-3 py-2"
+                    variant="bordered"
+                    size="sm"
+                    className="w-full"
                   />
-                </label>
+                </div>
               </>
             )}
+
             {saveError && (
               <p className="text-red-500 text-sm" role="alert">
                 {saveError}
               </p>
             )}
+
             <div className="flex flex-wrap items-center gap-3 pt-4">
-              <button
+              <Button
                 type="submit"
-                disabled={submitting}
-                aria-busy={submitting}
-                className="inline-flex min-h-[2.75rem] min-w-[10rem] items-center justify-center rounded-lg border-2 border-black bg-black px-5 py-2.5 text-sm font-semibold text-white shadow-sm outline-none transition-colors hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-black/55 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-100 dark:border-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 dark:focus-visible:ring-white/80 dark:focus-visible:ring-offset-neutral-950 disabled:pointer-events-none disabled:opacity-50"
+                color="primary"
+                variant="solid"
+                size="md"
+                isDisabled={submitting}
+                className="min-h-[2.75rem] min-w-[10rem]"
               >
                 {submitting ? "Saving…" : "Save changes"}
-              </button>
-              <Link
-                href="/photos"
-                className="inline-flex min-h-[2.75rem] items-center justify-center rounded-lg border-2 border-black/20 px-5 py-2.5 text-sm font-medium outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-100 dark:border-white/25 dark:focus-visible:ring-white/60 dark:focus-visible:ring-offset-neutral-950"
+              </Button>
+              <Button
+                type="button"
+                variant="bordered"
+                size="md"
+                className="min-h-[2.75rem]"
+                onPress={() => router.push("/photos")}
               >
                 Cancel
-              </Link>
+              </Button>
             </div>
           </form>
         )}

@@ -6,7 +6,6 @@ import { useTheme } from "next-themes";
 
 // Data
 import yourData from "../data/en.json";
-import Cursor from "../components/Cursor";
 
 const Edit = () => {
   // states
@@ -145,11 +144,8 @@ const Edit = () => {
   };
 
   return (
-    <div
-      className={`container mx-auto px-4 tablet:px-6 laptop:px-8 ${data.showCursor && "cursor-none"}`}
-    >
+    <div className="container mx-auto px-4 tablet:px-6 laptop:px-8">
       <Header isBlog></Header>
-      {data.showCursor && <Cursor />}
       <div className="mt-10">
         <div className={`${theme === "dark" ? "bg-transparent" : "bg-white"}`}>
           <div className="flex items-center justify-between">
@@ -302,25 +298,6 @@ const Edit = () => {
                   onClick={() => setData({ ...data, darkMode: false })}
                   classes={
                     !data.darkMode && "bg-red-500 text-white hover:bg-red-600"
-                  }
-                >
-                  No
-                </Button>
-              </div>
-            </div>
-            <div className="mt-5 flex items-center">
-              <label className="w-1/5 text-lg opacity-50">Custom Cursor</label>
-              <div className="w-4/5 ml-10 flex items-center">
-                <Button
-                  onClick={() => setData({ ...data, showCursor: true })}
-                  type={data.showCursor && "primary"}
-                >
-                  Yes
-                </Button>
-                <Button
-                  onClick={() => setData({ ...data, showCursor: false })}
-                  classes={
-                    !data.showCursor && "bg-red-500 text-white hover:bg-red-600"
                   }
                 >
                   No
@@ -487,7 +464,7 @@ const Edit = () => {
             <div className="mt-10">
               <label
                 htmlFor="edit-show-our-team"
-                className="mb-8 flex cursor-pointer items-center gap-3"
+                className="mb-8 flex items-center gap-3"
               >
                 <input
                   id="edit-show-our-team"

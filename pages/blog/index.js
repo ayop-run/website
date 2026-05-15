@@ -77,7 +77,7 @@ const Blog = ({ posts }) => {
                 {posts &&
                   posts.map((post) => (
                     <article
-                      className="cursor-pointer relative group transition-all hover:scale-[1.02]"
+                      className="relative group transition-all hover:scale-[1.02]"
                       key={post.slug}
                       onClick={() => Router.push(`/blog/${post.slug}`)}
                     >

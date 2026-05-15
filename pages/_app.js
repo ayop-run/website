@@ -21,7 +21,12 @@ const App = ({ Component, pageProps }) => {
           href="/images/logo/favicon.png"
         />
       </Head>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+        disableTransitionOnChange
+      >
         <Component {...pageProps} />
       </ThemeProvider>
     </>

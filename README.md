@@ -15,7 +15,6 @@ AYOP is a community that runs at our own pace — together. We create meaningful
 - **Team Showcase** - Display team members organized by Track, Partnership, and Media teams
 - **Instagram Integration** - Embedded Instagram feed using Behold widget
 - **Activities Section** - Showcase community activities and events
-- **Custom Cursor** - Interactive cursor animations
 
 ## Sections
 
