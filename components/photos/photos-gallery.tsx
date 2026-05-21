@@ -39,7 +39,7 @@ function buildQuery(params: {
 }
 
 const filterSelectTriggerClass =
-  'h-9 min-w-[7.5rem] rounded-none border-border bg-secondary/50 shadow-none text-sm text-foreground hover:bg-secondary/80 focus-visible:border-foreground/30 focus-visible:ring-1 focus-visible:ring-foreground/20'
+  'h-9 min-w-[7.5rem] cursor-pointer rounded-none border-border bg-secondary/50 shadow-none text-sm text-foreground hover:bg-secondary/80 focus-visible:border-foreground/30 focus-visible:ring-1 focus-visible:ring-foreground/20'
 
 function FilterSelect({
   value,
@@ -65,7 +65,7 @@ function FilterSelect({
           <SelectItem
             key={opt.value}
             value={opt.value}
-            className="rounded-sm text-sm focus:bg-secondary"
+            className="rounded-none text-sm focus:bg-secondary data-[highlighted]:bg-secondary"
           >
             {opt.label}
           </SelectItem>

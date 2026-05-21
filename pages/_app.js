@@ -6,8 +6,8 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <link rel="icon" type="image/png" href="/images/logo/favicon.png" />
-        <link rel="shortcut icon" type="image/png" href="/images/logo/favicon.png" />
+        <link rel="icon" type="image/svg+xml" href="/images/logo/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/favicon.png" />
         <link rel="apple-touch-icon" href="/images/logo/favicon.png" />
       </Head>
       <ThemeProvider

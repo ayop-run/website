@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
 
 type SiteLogoProps = {
@@ -6,27 +10,25 @@ type SiteLogoProps = {
 
 /** AYOP wordmark — dark SVG on light theme, white SVG on dark theme. */
 export function SiteLogo({ className }: SiteLogoProps) {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const src =
+    !mounted || resolvedTheme === 'dark'
+      ? '/images/logo/logo-main-white.svg'
+      : '/images/logo/logo-main-dark.svg'
+
   return (
-    <span
-      className={cn(
-        'inline-flex items-center leading-none [&_img]:block [&_img]:h-full [&_img]:w-auto',
-        className,
-      )}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/logo/logo-main-dark.svg"
-        alt="AYOP"
-        className="dark:hidden"
-        decoding="async"
-      />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/logo/logo-main-white.svg"
-        alt="AYOP"
-        className="hidden dark:block"
-        decoding="async"
-      />
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt="AYOP"
+      className={cn('block h-full w-auto', className)}
+      decoding="async"
+    />
   )
 }

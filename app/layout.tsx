@@ -15,6 +15,15 @@ export const metadata: Metadata = {
   description: 'A Berlin-based running community built around rhythm, connection, and collective movement. Run Berlin, your way.',
   keywords: ['running', 'Berlin', 'community', 'AYOP', 'running club', 'trail running', 'track'],
   authors: [{ name: 'AYOP' }],
+  icons: {
+    icon: [
+      { url: '/images/logo/favicon.svg', type: 'image/svg+xml' },
+      { url: '/images/logo/favicon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/images/logo/favicon.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: [{ url: '/images/logo/favicon.png', sizes: '180x180', type: 'image/png' }],
+    shortcut: '/images/logo/favicon.png',
+  },
   openGraph: {
     title: 'AYOP — At Your Own Pace',
     description: 'A Berlin-based running community built around rhythm, connection, and collective movement.',
