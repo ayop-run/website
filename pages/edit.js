@@ -1,12 +1,11 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import Button from "../components/Button";
-import Header from "../components/Header";
 import { v4 as uuidv4 } from "uuid";
 import { useTheme } from "next-themes";
 
 // Data
 import yourData from "../data/en.json";
-import Cursor from "../components/Cursor";
 
 const Edit = () => {
   // states
@@ -146,10 +145,16 @@ const Edit = () => {
 
   return (
     <div
-      className={`container mx-auto px-4 tablet:px-6 laptop:px-8 ${data.showCursor && "cursor-none"}`}
+      className="container mx-auto px-4 tablet:px-6 laptop:px-8"
     >
-      <Header isBlog></Header>
-      {data.showCursor && <Cursor />}
+      <header className="mb-8 flex items-center justify-between border-b border-border py-4">
+        <Link href="/" className="text-xl font-black tracking-tighter">
+          AYOP
+        </Link>
+        <Link href="/admin" className="text-sm text-muted-foreground hover:text-foreground">
+          Admin
+        </Link>
+      </header>
       <div className="mt-10">
         <div className={`${theme === "dark" ? "bg-transparent" : "bg-white"}`}>
           <div className="flex items-center justify-between">

@@ -1,102 +1,71 @@
-# AYOP - At Your Own Pace
+# AYOP — At Your Own Pace
 
-A community website for AYOP, a running community in Berlin that celebrates growth at your own pace.
+Community website for [AYOP](https://ayop.run), a Berlin running community.
 
-## About
+## Stack
 
-AYOP is a community that runs at our own pace — together. We create meaningful events and partnerships, document our journey through media, and deliver structured training that meets runners where they are.
+- **Next.js 16** (App Router) + **Pages Router** for `/api/*` and dev-only `/edit`
+- **React 19**, **TypeScript**, **Tailwind CSS 4**
+- **shadcn/ui** (Radix) + **Framer Motion**
+- **Supabase** — photo archive
+- **next-themes** — dark mode (default dark)
 
-## Features
-
-- **Modern Stack** - Built with Next.js and TailwindCSS
-- **Minimal Design** - Clean, focused user experience
-- **Dark Mode** - Toggle between light and dark themes
-- **Blog System** - Create, read, update, and delete blog posts with an easy-to-use UI
-- **Team Showcase** - Display team members organized by Track, Partnership, and Media teams
-- **Instagram Integration** - Embedded Instagram feed using Behold widget
-- **Activities Section** - Showcase community activities and events
-- **Custom Cursor** - Interactive cursor animations
-
-## Sections
-
-- **Home** - Hero section, activities overview, Instagram feed, and community introduction
-- **About** - Team members organized by Track, Partnership, and Media teams with mission statements
-- **Blog** - Markdown-based blog system for community stories and updates
-- **Manifesto** - Community values and philosophy
-- **Contact** - Get in touch with the community
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ (check `.nvmrc` for the recommended version)
-- Yarn package manager
-
-### Installation
-
-1. Clone the repository:
+## Getting started
 
 ```bash
-git clone git@github.com:ayop-run/website.git
-```
-
-2. Install dependencies:
-
-```bash
+git clone git@github.com:sujinleeme/ayop.git
+cd ayop
 yarn install
-```
-
-3. Run the development server:
-
-```bash
+cp .env.example .env.local   # fill in Supabase + admin password
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+Open [http://localhost:3000](http://localhost:3000).
 
-## Configuration
+### Environment variables
 
-Edit `data/en.json` to customize:
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key (server only) |
+| `ADMIN_PASSWORD` | Photo admin unlock + edit APIs |
 
-- Team members and their information
-- Activities and descriptions
-- Social media links
-- About page content
-- Manifesto text
-- Header taglines
+## Routes
+
+| Route | Description |
+| --- | --- |
+| `/` | Home |
+| `/about` | Community + team (from `data/en.json`) |
+| `/activities` | Event schedule |
+| `/photos` | Supabase photo gallery |
+| `/photos/new` | Add album (admin) |
+| `/photos/[id]/edit` | Edit album (admin) |
+| `/projects` | Projects showcase |
+| `/manifesto` | Manifesto |
+| `/admin` | Admin hub |
+| `/edit` | Dev-only site content editor (Pages Router) |
+
+## Content
+
+- Marketing copy & team: [`data/en.json`](data/en.json)
+- Design nav / mock projects: [`lib/data.ts`](lib/data.ts)
+- Photos API: [`pages/api/photos/`](pages/api/photos/)
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `yarn dev` | Development server |
+| `yarn build` | Production build |
+| `yarn start` | Run production build |
+| `yarn lint` | ESLint |
 
 ## Deployment
 
-The site can be deployed to any platform that supports Next.js:
+Deploy as a standard Next.js app on Vercel. Set **Root Directory** to the repo root and add the same env vars as `.env.local`.
 
-- **Vercel** (recommended for Next.js)
-- **Netlify**
-- **AWS Amplify**
-- Any Node.js hosting platform
-
-## Tech Stack
-
-- **Next.js** - React framework for production
-- **TailwindCSS** - Utility-first CSS framework
-- **GSAP** - Animation library
-- **next-themes** - Dark mode support
-- **react-markdown** - Markdown rendering for blog posts
-
-## Development
-
-### Available Scripts
-
-- `yarn dev` - Start development server
-- `yarn build` - Build for production
-- `yarn start` - Start production server
-- `yarn lint` - Run ESLint
+If Turbopack reports a wrong workspace root, `turbopack.root` is set in [`next.config.mjs`](next.config.mjs).
 
 ## License
 
-This project is private and proprietary to AYOP.
-
-## Contact
-
-- Website: [ayop.run](https://ayop.run)
-- Instagram: [@ayop.run](https://www.instagram.com/ayop.run/)
-- Email: hello@ayop.run
+Private and proprietary to AYOP.
