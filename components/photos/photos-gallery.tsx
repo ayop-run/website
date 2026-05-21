@@ -344,7 +344,7 @@ export function PhotosGallery() {
   }
 
   const adminUnlocked = sessionState === 'admin'
-  const yearButtons = FILTER_YEARS.map((y) => Number(y))
+  const yearButtons = [...FILTER_YEARS].map((y) => Number(y)).sort((a, b) => b - a)
 
   return (
     <main className="min-h-screen bg-background">
