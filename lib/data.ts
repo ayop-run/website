@@ -138,7 +138,7 @@ export const activities: Activity[] = [
           brands: ['Klättermusen', 'lululemon', 'ON Running', '4T2', 'Passenger Clothing', 'HOKA'],
         },
         {
-          category: 'Nutrition',
+          category: 'Sports Nutrition',
           brands: ['Ultimate Potential'],
         },
         {
