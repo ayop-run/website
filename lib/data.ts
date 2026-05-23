@@ -101,7 +101,7 @@ export const activities: Activity[] = [
       {
         question: 'Where do sessions happen and who leads them?',
         answer:
-          'We meet at a track located between Kreuzberg and Neukölln. For the exact location, please contact us via Instagram.\n\nSessions are led by Nacho, a volunteer coach, together with the AYOP community.',
+          'We meet at a track located between Kreuzberg and Neukölln. For the exact location, please contact us via Instagram.\n\nSessions are led volunteer coaches, together with the AYOP community.',
       },
       {
         question: 'What should I bring and how do I stay updated?',
