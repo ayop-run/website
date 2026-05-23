@@ -77,38 +77,44 @@ export const activities: Activity[] = [
       instagram: 'https://www.instagram.com/nachogon1/',
       title: 'Coach',
     }],
-    faqs: [
-      {
-        question: 'Is it free?',
-        answer:
-          'Yes — AYOP is a volunteer-led running community and all sessions are free to join.\n\nPlease respect the community, support each other, and give back whenever you can.',
-      },
-      {
-        question: 'How do I join?',
-        answer:
-          'Just come by. You can check all upcoming sessions on our Strava.\n\nIf you have any questions before joining, feel free to message us on Instagram.',
-      },
-      {
-        question: 'Is AYOP beginner friendly?',
-        answer:
-          'Yes. Our sessions are open to all levels and usually split into 3 levels (Performance, Development, Finish).\n\nWe always include warm-up and cool-down so everyone can run safely and comfortably.',
-      },
-      {
-        question: 'What races do you train for?',
-        answer:
-          'We mainly prepare for major Berlin races such as the Berlin Half Marathon, Berlin Marathon, and various 10K races throughout the year.\n\nHowever, there is no pressure to race — you can join freely and follow your own training goals and schedule.',
-      },
-      {
-        question: 'Where do sessions happen and who leads them?',
-        answer:
-          'We meet at a track located between Kreuzberg and Neukölln. For the exact location, please contact us via Instagram.\n\nSessions are led by volunteer coaches, together with the AYOP community. We provide photos of the session to the participants.',
-      },
-      {
-        question: 'What should I bring and how do I stay updated?',
-        answer:
-          'Bring your running shoes, water, and comfortable sportswear — and good energy.\n\nTo stay updated, follow AYOP on Instagram and Strava for weekly session info and announcements.',
-      },
-    ],
+faqs: [
+  {
+    question: 'Is AYOP free to join?',
+    answer:
+      'Yes, AYOP is a volunteer-led running community, and all sessions are completely free.\n\nWe simply ask everyone to respect the community, support one another, and contribute positively to the atmosphere.',
+  },
+  {
+    question: 'How can I join a session?',
+    answer:
+      'You can join by RSVPing through our Strava and showing up at the session.\n\nAll upcoming runs and training schedules are shared on Strava. If you have any questions before joining, feel free to reach out to us on Instagram.',
+  },
+  {
+    question: 'Are beginners welcome?',
+    answer:
+      'Absolutely. The sessions are open to runners of all levels.\n\nMost sessions are divided into three groups — Performance, Development, and Finish — so everyone can train comfortably at their own pace. We also include warm-up and cool-down routines in every session and do all together.',
+  },
+  {
+    question: 'What kind of races do you train for?',
+    answer:
+      'We mainly prepare for major Berlin races including the Berlin Half Marathon, Berlin Marathon, and various 10K events throughout the year.\n\nThat said, there is no pressure to race. You are welcome to join simply to enjoy running, improve fitness, or train toward your own personal goals.',
+  },
+  {
+    question: 'Where do sessions take place?',
+    answer:
+      'Our sessions are held at a track between Kreuzberg and Neukölln.\n\nFor the exact meeting location, please contact us through Instagram. Sessions are led by volunteer coaches together with members of the AYOP community, and we often share photos from training with participants afterward.',
+  },
+  {
+    question: 'What should I bring, and how can I stay updated?',
+    answer:
+      'Bring your running shoes, water, comfortable sportswear, and positive energy.\n\nTo stay updated on weekly sessions, announcements, and community events, follow AYOP on Instagram and Strava.',
+  },
+  {
+    question: 'How can I contribute to the community?',
+    answer:
+      'AYOP is built by the community, for the community.\n\nYou can contribute by supporting fellow runners, helping during sessions, taking photos, pacing groups, volunteering, or simply bringing good energy or light snacks or food and consistency to the team.',
+  },
+]
+,
   },
   // {
   //   id: 'city-to-trail',
@@ -143,14 +149,14 @@ export const activities: Activity[] = [
         },
         {
           category: 'Food & Beverage',
-          brands: ['Superpop', 'Kamobeers', 'Superpops', 'Milano Vice', 'Momogo'],
+          brands: ['Milano Vice', 'Superpop', 'Kamo', 'Momogo'],
         },
         {
           category: 'Retail & Outdoor',
           brands: ['ARYS Store', 'Globetrotter Berlin'],
         },
         {
-          category: 'Sports Gear',
+          category: 'Sports Wearable Devices',
           brands: ['Miiego'],
         },
       ],
