@@ -184,7 +184,7 @@ export const activitiesPageContent = {
     where: 'Where',
   },
   subsectionTitles: {
-    faq: 'FAQ',
+    faq: 'FAQs',
     brands: "Brands We've Collaborated With",
   },
   cta: {
