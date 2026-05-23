@@ -28,7 +28,7 @@ export function Footer() {
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               At Your Own Pace.
               <br />
-              Berlin Running Community.
+              Berlin Running Collective.
             </p>
           </div>
 
