@@ -5,14 +5,8 @@ import { motion } from 'framer-motion'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { PageHero } from '@/components/page-hero'
-import { values, faqs } from '@/lib/data'
+import { values } from '@/lib/data'
 import { siteData } from '@/lib/site-data'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
 
 export default function AboutPage() {
   return (
@@ -153,45 +147,6 @@ export default function AboutPage() {
             </div>
           </section>
         )}
-
-        {/* FAQ Section */}
-        <section className="py-16 md:py-24 border-t border-border">
-          <div className="px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="type-h2">Questions?</h2>
-                <p className="mt-4 type-body text-muted-foreground">
-                  Everything you need to know before your first AYOP session.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-              >
-                <Accordion type="single" collapsible className="w-full">
-                  {faqs.map((faq, i) => (
-                    <AccordionItem key={i} value={`item-${i}`} className="border-border">
-                      <AccordionTrigger className="text-left font-medium hover:no-underline py-4">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="type-body text-muted-foreground pb-4">
-                        {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </motion.div>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </>

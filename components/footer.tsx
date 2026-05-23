@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { SiteLogo } from '@/components/site-logo'
-import { navLinks, socialLinks } from '@/lib/data'
-import { getHomeHref, isPhotosOnlyProduction } from '@/lib/site-mode'
+import { socialLinks } from '@/lib/data'
+import { getHomeHref, getPublicNavLinks, shouldShowPublicNav } from '@/lib/site-mode'
 import { cn } from '@/lib/utils'
 
 export function Footer() {
   const homeHref = getHomeHref()
-  const showSiteNav = !isPhotosOnlyProduction()
+  const navLinks = getPublicNavLinks()
+  const showSiteNav = shouldShowPublicNav()
 
   return (
     <footer className="border-t border-border bg-card">

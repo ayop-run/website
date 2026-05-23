@@ -1,6 +1,6 @@
 // Navigation links
 export const navLinks = [
-  { href: '/activities', label: 'Program' },
+  { href: '/activities', label: 'Activities' },
   { href: '/about', label: 'Community' },
   { href: '/photos', label: 'Photos' },
   { href: '/projects', label: 'Projects' },
@@ -26,35 +26,194 @@ export const socialLinks = [
 ]
 
 // Activities
-export const activities = [
+export type ActivityStaff = {
+  name: string
+  instagram: string
+  title: string
+}
+
+export type ActivityFaq = {
+  question: string
+  answer: string
+}
+
+export type ActivityBrandGroup = {
+  category: string
+  brands: string[]
+}
+
+export type ActivityBrands = {
+  intro: string
+  year: string
+  groups: ActivityBrandGroup[]
+}
+
+export type Activity = {
+  id: string
+  title: string
+  shortTitle: string
+  description: string
+  details: string
+  schedule: string
+  location: string
+  imageUrl?: string
+  staffs?: ActivityStaff[]
+  faqs?: ActivityFaq[]
+  brands?: ActivityBrands
+}
+
+export const activities: Activity[] = [
   {
     id: 'own-pace-monday',
     title: 'Own Pace Monday',
-    shortTitle: 'OPM',
+    shortTitle: 'Track',
     description: 'Every Monday at 7pm, we deliver structured, coach-led interval training that builds rhythm, consistency, and long-term progress — together on the track.',
     details: 'Open to all levels. Scaled to your pace.',
     schedule: 'Every Monday at 19:00',
-    location: 'Tempelhofer Feld',
+    location: 'Kreuzberg-Neukölln District',
+    imageUrl: '/images/track.jpg',
+    staffs: [{
+      name: 'Nacho',
+      instagram: 'https://www.instagram.com/nachogon1/',
+      title: 'Coach',
+    }],
+    faqs: [
+      {
+        question: 'Is it free?',
+        answer:
+          'Yes — AYOP is a volunteer-led running community and all sessions are free to join.\n\nPlease respect the community, support each other, and give back whenever you can.',
+      },
+      {
+        question: 'How do I join?',
+        answer:
+          'Just come by. You can check all upcoming sessions on our Strava.\n\nIf you have any questions before joining, feel free to message us on Instagram.',
+      },
+      {
+        question: 'Is AYOP beginner friendly?',
+        answer:
+          'Yes. Our sessions are open to all levels and usually split into 3 pace groups.\n\nWe always include warm-up and cool-down so everyone can run safely and comfortably.',
+      },
+      {
+        question: 'What races do you train for?',
+        answer:
+          'We mainly prepare for major Berlin races such as the Berlin Half Marathon, Berlin Marathon, and various 10K races throughout the year.\n\nHowever, there is no pressure to race — you can join freely and follow your own training goals and schedule.',
+      },
+      {
+        question: 'Where do sessions happen and who leads them?',
+        answer:
+          'We meet at a track located between Kreuzberg and Neukölln. For the exact location, please contact us via Instagram.\n\nSessions are led by Nacho, a volunteer coach, together with the AYOP community.',
+      },
+      {
+        question: 'What should I bring and how do I stay updated?',
+        answer:
+          'Bring your running shoes, water, and comfortable sportswear — and good energy.\n\nTo stay updated, follow AYOP on Instagram and Strava for weekly session info and announcements.',
+      },
+    ],
   },
-  {
-    id: 'city-to-trail',
-    title: 'City To Trail',
-    shortTitle: 'C2T',
-    description: 'Once a month, we guide you out of the city and into the dirt with slow, social long runs designed for exploration, endurance, and connection.',
-    details: 'No racing. No pressure. Just time on feet.',
-    schedule: 'Monthly',
-    location: 'Various Berlin trails',
-  },
+  // {
+  //   id: 'city-to-trail',
+  //   title: 'City To Trail',
+  //   shortTitle: 'C2T',
+  //   description: 'Once a month, we guide you out of the city and into the dirt with slow, social long runs designed for exploration, endurance, and connection.',
+  //   details: 'No racing. No pressure. Just time on feet.',
+  //   schedule: 'Monthly',
+  //   location: 'Various Berlin trails',
+  // },
   {
     id: 'community-runs',
-    title: 'Community Run Events',
-    shortTitle: 'CRE',
+    title: 'Community Events',
+    shortTitle: 'Special',
     description: 'Through curated run-led events, we connect communities, cultures, and brands — using movement as the starting point for meaningful exchange.',
     details: 'From pop-up runs to cultural collaborations.',
-    schedule: 'Special Events',
+    schedule: 'Monthly',
     location: 'Berlin & Beyond',
+    imageUrl: '/images/running-events.jpg',
+    brands: {
+      intro:
+        "We're grateful to collaborate with brands that support our community and running culture.",
+      year: '2026',
+      groups: [
+        {
+          category: 'Sportswear',
+          brands: ['Klättermusen', 'lululemon', 'ON Running', '4T2', 'Passenger Clothing', 'HOKA'],
+        },
+        {
+          category: 'Nutrition',
+          brands: ['Ultimate Potential'],
+        },
+        {
+          category: 'Food & Beverage',
+          brands: ['Superpop', 'Kamobeers', 'Superpops', 'Milano Vice', 'Momogo'],
+        },
+        {
+          category: 'Retail & Outdoor',
+          brands: ['ARYS Store', 'Globetrotter Berlin'],
+        },
+        {
+          category: 'Sports Gear',
+          brands: ['Miiego'],
+        },
+      ],
+    },
   },
 ]
+
+export type ActivitiesPageCtaLink = {
+  socialId: 'instagram' | 'strava' | 'email'
+  primary?: boolean
+}
+
+export type ActivitiesPageCtaBlock = {
+  eyebrow: string
+  title: string
+  body: string[]
+  footnote?: string
+  links: ActivitiesPageCtaLink[]
+}
+
+export const activitiesPageContent = {
+  title: 'ACTIVITIES',
+  description:
+    'Weekly rituals and monthly journeys — designed to build consistency, connection, and culture.',
+  joinLink: {
+    label: 'Join session',
+    socialId: 'strava' as const,
+  },
+  metaLabels: {
+    when: 'When',
+    where: 'Where',
+  },
+  subsectionTitles: {
+    faq: 'FAQ',
+    brands: "Brands We've Collaborated With",
+  },
+  cta: {
+    runners: {
+      eyebrow: 'For Runners',
+      title: 'Run with us.',
+      body: [
+        'Show up. Move together. No matter your pace.',
+        'An open community built for everyone, with care.', // pace 반복 제거
+      ],
+      links: [
+        { socialId: 'instagram', primary: false },
+        { socialId: 'strava', primary: true },
+      ],
+    },
+    collaborations: {
+      eyebrow: 'For Collaborations',
+      title: 'Build with us.',
+      body: [
+        'With brands, creatives, and communities.', // 마침표 대신 쉼표로 연결해 가독성 확보
+        'Bringing real runners and real stories to light.', 
+      ],
+      links: [
+        { socialId: 'instagram', primary: false },
+        { socialId: 'email', primary: true },
+      ],
+    },
+  } satisfies Record<string, ActivitiesPageCtaBlock>,
+}
 
 // Upcoming Runs
 export const upcomingRuns = [
@@ -310,30 +469,6 @@ export const projects = [
       { role: 'Store Liaison', name: 'Running Store Berlin' },
       { role: 'Photography', name: 'HyeYeon' },
     ],
-  },
-]
-
-// FAQs
-export const faqs = [
-  {
-    question: 'How do I join?',
-    answer: 'Join the next session through Instagram updates, the Strava club, or email.',
-  },
-  {
-    question: 'Is AYOP beginner friendly?',
-    answer: 'Yes. AYOP is built around individual pace. All levels are welcome.',
-  },
-  {
-    question: 'Where do sessions happen?',
-    answer: 'Sessions take place across Berlin including tracks, city routes, and trails.',
-  },
-  {
-    question: 'What should I bring?',
-    answer: 'Bring comfortable running shoes, water, and weather-appropriate clothing.',
-  },
-  {
-    question: 'How do I stay updated?',
-    answer: 'Follow AYOP on Instagram and Strava.',
   },
 ]
 

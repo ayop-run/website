@@ -10,7 +10,7 @@ export function ActivitiesPreview() {
     <section id="activities" className="py-24 md:py-32 border-t border-border">
       <div className="px-6 md:px-12">
         <SectionHeading
-          eyebrow="Program"
+          eyebrow="Activities"
           title="Our Activities"
           description="Weekly rituals and monthly journeys — designed to build consistency, connection, and culture."
         />

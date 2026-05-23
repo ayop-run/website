@@ -1,6 +1,9 @@
 import { navLinks } from '@/lib/data'
 
-/** When true, production only serves the photo gallery and related routes. */
+/** Routes visible in production while the rest of the site stays gated. */
+const PHOTOS_ONLY_PUBLIC_PATHS = ['/photos', '/activities'] as const
+
+/** When true, production only serves photo gallery, activities, and related routes. */
 export function isPhotosOnlyProduction(): boolean {
   if (process.env.PHOTOS_ONLY === 'false') return false
   if (process.env.PHOTOS_ONLY === 'true') return true
@@ -13,13 +16,22 @@ export function getHomeHref(): string {
 
 export function getPublicNavLinks() {
   if (isPhotosOnlyProduction()) {
-    return navLinks.filter((link) => link.href === '/photos')
+    return navLinks.filter((link) =>
+      PHOTOS_ONLY_PUBLIC_PATHS.includes(
+        link.href as (typeof PHOTOS_ONLY_PUBLIC_PATHS)[number],
+      ),
+    )
   }
   return navLinks
 }
 
+export function shouldShowPublicNav(): boolean {
+  return getPublicNavLinks().length > 1
+}
+
 export function isPathAllowedInPhotosOnlyMode(pathname: string): boolean {
   if (pathname.startsWith('/photos')) return true
+  if (pathname.startsWith('/activities')) return true
   if (pathname.startsWith('/api/photos')) return true
   if (pathname.startsWith('/admin')) return true
   return false

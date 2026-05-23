@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
-import { getHomeHref, getPublicNavLinks, isPhotosOnlyProduction } from '@/lib/site-mode'
+import { getHomeHref, getPublicNavLinks, shouldShowPublicNav } from '@/lib/site-mode'
 import { SiteLogo } from '@/components/site-logo'
 import { Sun, Moon } from 'lucide-react'
 
@@ -15,7 +15,7 @@ export function Navigation() {
   const { setTheme } = useTheme()
   const navLinks = getPublicNavLinks()
   const homeHref = getHomeHref()
-  const showSiteNav = !isPhotosOnlyProduction()
+  const showSiteNav = shouldShowPublicNav()
 
   const toggleTheme = () => {
     const root = document.documentElement
