@@ -102,7 +102,7 @@ export function Navigation() {
               >
                 <div className="w-6 flex flex-col gap-1.5">
                   <motion.span
-                    animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                    animate={isMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                     className="w-full h-px bg-foreground origin-center"
                   />
                   <motion.span
@@ -110,7 +110,7 @@ export function Navigation() {
                     className="w-full h-px bg-foreground"
                   />
                   <motion.span
-                    animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                    animate={isMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                     className="w-full h-px bg-foreground origin-center"
                   />
                 </div>
