@@ -21,6 +21,7 @@ import {
   instagramProfileUrl,
   type PhotoDto,
 } from '@/lib/photos/client'
+import { trackOpenPhotoAlbum } from '@/lib/analytics'
 
 function buildQuery(params: {
   year: string
@@ -96,6 +97,7 @@ function PhotoAlbumCard({
       href={photo.externalAlbumUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackOpenPhotoAlbum(photo, 'photos_gallery')}
       initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}

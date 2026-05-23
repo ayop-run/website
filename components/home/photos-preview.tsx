@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { categoryLabel, type PhotoDto } from '@/lib/photos/client'
+import { trackOpenPhotoAlbum } from '@/lib/analytics'
 
 export function PhotosPreview() {
   const [albums, setAlbums] = useState<PhotoDto[]>([])
@@ -59,6 +60,7 @@ export function PhotosPreview() {
                   href={album.externalAlbumUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackOpenPhotoAlbum(album, 'home_preview')}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
