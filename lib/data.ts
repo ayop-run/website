@@ -79,7 +79,7 @@ export const activities: Activity[] = [
     }],
 faqs: [
   {
-    question: 'Is AYOP free to join?',
+    question: 'Is it free to join?',
     answer:
       'Yes, AYOP is a volunteer-led running community, and all sessions are completely free.\n\nWe simply ask everyone to respect the community, support one another, and contribute positively to the atmosphere.',
   },

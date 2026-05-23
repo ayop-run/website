@@ -3,19 +3,17 @@ import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { GoogleAnalytics } from '@/components/google-analytics'
 import { ThemeProvider } from '@/components/theme-provider'
+import { rootMetadata } from '@/lib/site-metadata'
 import './globals.css'
 
-const inter = Inter({ 
-  subsets: ["latin"],
+const inter = Inter({
+  subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'AYOP — At Your Own Pace',
-  description: 'A Berlin-based running community built around rhythm, connection, and collective movement. Run Berlin, your way.',
-  keywords: ['running', 'Berlin', 'community', 'AYOP', 'running club', 'trail running', 'track'],
-  authors: [{ name: 'AYOP' }],
+  ...rootMetadata,
   icons: {
     icon: [
       { url: '/images/logo/favicon.svg', type: 'image/svg+xml' },
@@ -24,17 +22,6 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: '/images/logo/favicon.png', sizes: '180x180', type: 'image/png' }],
     shortcut: '/images/logo/favicon.png',
-  },
-  openGraph: {
-    title: 'AYOP — At Your Own Pace',
-    description: 'A Berlin-based running community built around rhythm, connection, and collective movement.',
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AYOP — At Your Own Pace',
-    description: 'A Berlin-based running community built around rhythm, connection, and collective movement.',
   },
 }
 

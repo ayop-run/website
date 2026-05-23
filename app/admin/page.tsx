@@ -39,11 +39,11 @@ export default function AdminHomePage() {
           <Suspense fallback={<p className="text-muted-foreground">Loading…</p>}>
             <AdminGate>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <AdminCard
+                {/* <AdminCard
                   title="Edit website"
                   description="Header, activities, team, social links, and other marketing copy."
                   href="/admin/edit"
-                />
+                /> */}
                 <AdminCard
                   title="Photo archive"
                   description="Open the gallery; add and edit entries after sign-in."
