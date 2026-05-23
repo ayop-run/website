@@ -22,7 +22,7 @@ export function ActivitySubsection({ activity, title, children }: ActivitySubsec
 
   return (
     <section
-      className={`border-border ${ACTIVITY_SECTION_PADDING} pb-12 pt-8 md:pb-16 md:pt-12`}
+      className={`${ACTIVITY_SECTION_PADDING} pb-12 pt-8 md:pb-16 md:pt-12`}
     >
       <div className={ACTIVITY_GRID}>
         <ActivityImageSpacer hasImage={hasImage} />

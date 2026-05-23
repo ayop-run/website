@@ -91,7 +91,7 @@ export const activities: Activity[] = [
       {
         question: 'Is AYOP beginner friendly?',
         answer:
-          'Yes. Our sessions are open to all levels and usually split into 3 pace groups.\n\nWe always include warm-up and cool-down so everyone can run safely and comfortably.',
+          'Yes. Our sessions are open to all levels and usually split into 3 levels (Performance, Development, Finish).\n\nWe always include warm-up and cool-down so everyone can run safely and comfortably.',
       },
       {
         question: 'What races do you train for?',
@@ -127,7 +127,7 @@ export const activities: Activity[] = [
     details: 'From pop-up runs to cultural collaborations.',
     schedule: 'Monthly',
     location: 'Berlin & Beyond',
-    imageUrl: '/images/running-events.jpg',
+    imageUrl: '/images/community-events.jpg',
     brands: {
       intro:
         "We're grateful to collaborate with brands that support our community and running culture.",

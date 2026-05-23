@@ -6,8 +6,12 @@ import { ActivitySection } from '@/components/activities/activity-section'
 export function ActivitiesList({ activities }: { activities: Activity[] }) {
   return (
     <section className="border-t border-border">
-      {activities.map((activity) => (
-        <ActivitySection key={activity.id} activity={activity} />
+      {activities.map((activity, index) => (
+        <ActivitySection
+          key={activity.id}
+          activity={activity}
+          imagePriority={index < 2}
+        />
       ))}
     </section>
   )

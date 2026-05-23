@@ -52,7 +52,7 @@ export function Footer() {
                 </ul>
               </div>
 
-              <div>
+              {/* <div>
                 <h3 className="text-sm font-medium text-foreground mb-4">
                   More
                 </h3>
@@ -68,7 +68,7 @@ export function Footer() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
             </>
           )}
 

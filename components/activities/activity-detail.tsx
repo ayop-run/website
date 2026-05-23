@@ -8,7 +8,13 @@ import {
 import { ActivityMeta } from '@/components/activities/activity-meta'
 import { ActivityJoinLink } from '@/components/activities/activity-join-link'
 
-export function ActivityDetail({ activity }: { activity: Activity }) {
+export function ActivityDetail({
+  activity,
+  imagePriority = false,
+}: {
+  activity: Activity
+  imagePriority?: boolean
+}) {
   const hasImage = Boolean(activity.imageUrl)
 
   return (
@@ -22,6 +28,7 @@ export function ActivityDetail({ activity }: { activity: Activity }) {
               src={activity.imageUrl!}
               alt={activity.title}
               fill
+              priority={imagePriority}
               className="object-cover"
             />
           </div>
