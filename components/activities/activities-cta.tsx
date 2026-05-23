@@ -27,7 +27,7 @@ function CtaColumn({ block, delay = 0 }: { block: ActivitiesPageCtaBlock; delay?
       className={delay > 0 ? 'lg:border-l lg:border-border lg:pl-16' : undefined}
     >
       <p className="type-eyebrow text-muted-foreground">{block.eyebrow}</p>
-      <h2 className="mt-4 type-h2">{block.title}</h2>
+      <h3 className="mt-4 type-h3">{block.title}</h3>
       {primaryLine && (
         <p className="mt-4 type-body text-foreground">{primaryLine}</p>
       )}
