@@ -4,6 +4,7 @@ export const navLinks = [
   { href: '/about', label: 'Community' },
   { href: '/photos', label: 'Photos' },
   { href: '/projects', label: 'Projects' },
+  { href: '/benefits', label: 'Benefits' },
 ]
 
 // Social links

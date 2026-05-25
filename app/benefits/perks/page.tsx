@@ -5,48 +5,37 @@ import { useRouter } from 'next/navigation'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { PageHero } from '@/components/page-hero'
-import { PasswordGate } from '@/components/benefits/password-gate'
+import { BenefitsDashboard } from '@/components/benefits/benefits-dashboard'
 import {
   BENEFITS_PAGE,
   BENEFITS_ROUTES,
   fetchBenefitsUnlocked,
-  submitBenefitsUnlock,
 } from '@/lib/benefits/gate'
 
-export default function BenefitsPage() {
+export default function BenefitsPerksPage() {
   const router = useRouter()
-  const [ready, setReady] = useState(false)
+  const [isReady, setIsReady] = useState(false)
 
   useEffect(() => {
     const ctrl = new AbortController()
     ;(async () => {
       const unlocked = await fetchBenefitsUnlocked(ctrl.signal)
       if (ctrl.signal.aborted) return
-      if (unlocked) {
-        router.replace(BENEFITS_ROUTES.perks)
-      } else {
-        setReady(true)
+      if (!unlocked) {
+        router.replace(BENEFITS_ROUTES.gate)
+        return
       }
+      setIsReady(true)
     })()
     return () => ctrl.abort()
   }, [router])
-
-  const verifyPassword = async (password: string) => {
-    return submitBenefitsUnlock(password, true)
-  }
-
-  const handleSuccess = () => {
-    router.push(BENEFITS_ROUTES.perks)
-  }
 
   return (
     <>
       <Navigation />
       <main>
         <PageHero title={BENEFITS_PAGE.title} description={BENEFITS_PAGE.description} />
-        {ready && (
-          <PasswordGate verifyPassword={verifyPassword} onSuccess={handleSuccess} />
-        )}
+        {isReady && <BenefitsDashboard />}
       </main>
       <Footer />
     </>

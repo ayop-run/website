@@ -3,10 +3,10 @@ import { createPageMetadata } from '@/lib/site-metadata'
 
 export const metadata: Metadata = {
   ...createPageMetadata({
-    title: 'Benefits',
+    title: 'Member Perks',
     description:
-      'Exclusive partner discounts and benefits for AYOP running club members.',
-    path: '/benefits',
+      'Exclusive partner discounts for AYOP members. Copy a code and shop with our partners.',
+    path: '/benefits/perks',
   }),
   robots: {
     index: false,
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BenefitsLayout({
+export default function BenefitsPerksLayout({
   children,
 }: {
   children: React.ReactNode

@@ -49,6 +49,11 @@ export default function AdminHomePage() {
                   description="Open the gallery; add and edit entries after sign-in."
                   href="/photos"
                 />
+                <AdminCard
+                  title="Member benefits"
+                  description="Add, edit, or hide partner discount codes and QR vouchers."
+                  href="/admin/benefits"
+                />
               </div>
             </AdminGate>
           </Suspense>
