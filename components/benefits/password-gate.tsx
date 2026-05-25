@@ -62,7 +62,7 @@ export function PasswordGate({ verifyPassword, onSuccess }: PasswordGateProps) {
             A growing list of partner discounts — kit, fuel, recovery, and more — picked for the crew.
           </p>
           <p className="mt-2 type-body text-muted-foreground">
-            Ask any AYOP regular for the password, or DM us on Instagram.
+            Ask for the password at any session to organizers.
           </p>
 
           <ul className="mt-8 flex flex-wrap gap-2">
@@ -136,7 +136,7 @@ export function PasswordGate({ verifyPassword, onSuccess }: PasswordGateProps) {
               </Button>
             </form>
 
-            <p className="mt-6 text-sm text-muted-foreground">
+            {/* <p className="mt-6 text-sm text-muted-foreground">
               No password?{' '}
               <a
                 href="https://www.instagram.com/ayop.run/"
@@ -147,7 +147,7 @@ export function PasswordGate({ verifyPassword, onSuccess }: PasswordGateProps) {
                 Message us on Instagram
               </a>
               .
-            </p>
+            </p> */}
           </div>
         </motion.div>
       </div>
