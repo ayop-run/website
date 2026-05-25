@@ -149,7 +149,7 @@ faqs: [
         },
         {
           category: 'Food & Beverage',
-          brands: ['Milano Vice', 'Superpop', 'Kamo', 'Momogo'],
+          brands: ['Milano Vice', 'Superpop', 'Five Elephant','Kamo', 'Momogo'],
         },
         {
           category: 'Retail & Outdoor',
