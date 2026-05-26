@@ -6,6 +6,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
+        <meta name="google-adsense-account" content="ca-pub-1276789561645653" />
         <link rel="icon" type="image/svg+xml" href="/images/logo/favicon.svg" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/favicon.png" />
         <link rel="apple-touch-icon" href="/images/logo/favicon.png" />

@@ -243,7 +243,7 @@ export function BenefitCard({ benefit, isExpired = false }: BenefitCardProps) {
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="top" sideOffset={6}>
-                Code copied to clipboard!
+                Code copied!
               </TooltipContent>
             </Tooltip>
           </div>
