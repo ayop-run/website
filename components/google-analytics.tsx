@@ -22,7 +22,7 @@ export function GoogleAnalytics() {
           gtag('config', '${GA_MEASUREMENT_ID}');
         `}
       </Script>
-      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1276789561645653" strategy="afterInteractive" />
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1276789561645653" strategy="afterInteractive" crossorigin="anonymous" />
     </>
   )
 }
