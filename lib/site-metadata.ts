@@ -41,6 +41,7 @@ export function createPageMetadata({
   const fullTitle = `${title} — ${siteConfig.name}`
 
   return {
+    
     title,
     description,
     alternates: {
@@ -59,6 +60,9 @@ export function createPageMetadata({
       title: fullTitle,
       description,
     },
+    other: {
+      'google-adsense-account': 'ca-pub-1276789561645653',
+    }
   }
 }
 
