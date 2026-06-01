@@ -352,7 +352,7 @@ export function PhotosGallery() {
     <main className="min-h-screen bg-background">
       <PageHero
         title="PHOTOS"
-        description="Run memories from the crew — tap any album to open the full gallery on Google Photos."
+        description="Run memories from the crew — tap any album to open the full gallery."
       />
 
       {adminUnlocked && (
