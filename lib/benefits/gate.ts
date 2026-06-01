@@ -13,7 +13,7 @@ export const BENEFITS_ROUTES = {
 export const BENEFITS_PAGE = {
   title: 'BENEFITS',
   description:
-    'Exclusive partner discounts for AYOP members. Copy a code and head to the store to save on your next purchase.',
+    'Exclusive partner discounts for AYOP members.',
 }
 
 /** Ask the server whether the current visitor has a valid unlock cookie. */
