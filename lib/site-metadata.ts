@@ -97,4 +97,7 @@ export const rootMetadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    'google-adsense-account': 'ca-pub-1276789561645653',
+  },
 }

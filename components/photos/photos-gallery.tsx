@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -22,6 +22,7 @@ import {
   type PhotoDto,
 } from '@/lib/photos/client'
 import { trackOpenPhotoAlbum } from '@/lib/analytics'
+import { GoogleAdSenseUnit } from '@/components/google-adsense-unit'
 
 function buildQuery(params: {
   year: string
@@ -92,81 +93,89 @@ function PhotoAlbumCard({
   const igUrl = instagramProfileUrl(photo.photographerInstagramUsername)
   const handle = photo.photographerInstagramUsername?.replace(/^@/, '').trim()
 
+  const openAlbum = () => {
+    trackOpenPhotoAlbum(photo, 'photos_gallery')
+  }
+
   return (
-    <motion.a
-      href={photo.externalAlbumUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={() => trackOpenPhotoAlbum(photo, 'photos_gallery')}
+    <motion.article
       initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className="group flex h-full flex-col overflow-hidden"
+      className="group relative flex h-full flex-col overflow-hidden"
     >
-      <div className="relative aspect-square overflow-hidden bg-secondary">
-        {photo.coverImageUrl ? (
-          <img
-            src={photo.coverImageUrl}
-            alt={photo.title}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-            referrerPolicy="no-referrer"
-          />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center bg-gradient-to-br from-secondary to-muted">
-            <span className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-              {photo.shotOn} · {categoryLabel(photo.category)}
-            </span>
-            <span className="line-clamp-3 text-sm font-semibold">{photo.title}</span>
-          </div>
-        )}
-        {adminUnlocked && (
-          <div className="absolute top-2 right-2 z-10">
-            <Link
-              href={`/photos/${photo.id}/edit`}
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex min-h-[2.25rem] items-center border border-border bg-background/95 px-3 py-1.5 text-xs font-semibold shadow-sm backdrop-blur-sm hover:opacity-90"
-            >
-              Edit
-            </Link>
-          </div>
-        )}
-      </div>
+      {adminUnlocked && (
+        <div className="absolute top-2 right-2 z-10">
+          <Link
+            href={`/photos/${photo.id}/edit`}
+            className="inline-flex min-h-[2.25rem] items-center border border-border bg-background/95 px-3 py-1.5 text-xs font-semibold shadow-sm backdrop-blur-sm hover:opacity-90"
+          >
+            Edit
+          </Link>
+        </div>
+      )}
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-          {photo.shotOn}
-          <span className="mx-1.5 text-muted-foreground/60">·</span>
-          {categoryLabel(photo.category)}
-        </p>
-        <span className="text-sm font-medium uppercase tracking-wide text-foreground">
-          {photo.title}
-        </span>
-        {handle && igUrl ? (
-          <span
-            role="link"
-            tabIndex={0}
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              window.open(igUrl, '_blank', 'noopener,noreferrer')
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
+      <a
+        href={photo.externalAlbumUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={openAlbum}
+        className="flex flex-1 flex-col overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+      >
+        <div className="relative aspect-square overflow-hidden bg-secondary">
+          {photo.coverImageUrl ? (
+            <img
+              src={photo.coverImageUrl}
+              alt={photo.title}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center bg-gradient-to-br from-secondary to-muted">
+              <span className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+                {photo.shotOn} · {categoryLabel(photo.category)}
+              </span>
+              <span className="line-clamp-3 text-sm font-semibold">{photo.title}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-1 flex-col gap-2 p-4">
+          <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+            {photo.shotOn}
+            <span className="mx-1.5 text-muted-foreground/60">·</span>
+            {categoryLabel(photo.category)}
+          </p>
+          <span className="text-sm font-medium uppercase tracking-wide text-foreground">
+            {photo.title}
+          </span>
+          {handle && igUrl ? (
+            <span
+              role="link"
+              tabIndex={0}
+              onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
                 window.open(igUrl, '_blank', 'noopener,noreferrer')
-              }
-            }}
-            className="type-caption hover:text-foreground transition-colors cursor-pointer underline-offset-2 hover:underline"
-          >
-            @{handle}
-          </span>
-        ) : photo.photographerDisplayName ? (
-          <span className="type-caption">{photo.photographerDisplayName}</span>
-        ) : null}
-      </div>
-    </motion.a>
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  window.open(igUrl, '_blank', 'noopener,noreferrer')
+                }
+              }}
+              className="type-caption hover:text-foreground transition-colors cursor-pointer underline-offset-2 hover:underline"
+            >
+              @{handle}
+            </span>
+          ) : photo.photographerDisplayName ? (
+            <span className="type-caption">{photo.photographerDisplayName}</span>
+          ) : null}
+        </div>
+      </a>
+    </motion.article>
   )
 }
 
@@ -479,13 +488,24 @@ export function PhotosGallery() {
                 isRefetching ? 'opacity-60' : 'opacity-100'
               }`}
             >
-              {filteredAlbums.map((photo) => (
-                <PhotoAlbumCard
-                  key={photo.id}
-                  photo={photo}
-                  adminUnlocked={adminUnlocked}
-                />
+              {filteredAlbums.map((photo, index) => (
+                <Fragment key={photo.id}>
+                  {index === 4 && (
+                    <GoogleAdSenseUnit
+                      key="photos-gallery-ad"
+                      slot="4397008214"
+                      variant="card"
+                    />
+                  )}
+                  <PhotoAlbumCard
+                    photo={photo}
+                    adminUnlocked={adminUnlocked}
+                  />
+                </Fragment>
               ))}
+              {filteredAlbums.length > 0 && filteredAlbums.length <= 4 && (
+                <GoogleAdSenseUnit slot="4397008214" variant="card" />
+              )}
             </div>
           )}
 
