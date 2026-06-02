@@ -40,7 +40,9 @@ export function GoogleAdSenseUnit({
       ? 'relative flex h-full flex-col overflow-hidden'
       : 'mb-10 w-full')
   const pushed = useRef(false)
-  const [scriptLoaded, setScriptLoaded] = useState(false)
+  const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>(
+    'loading',
+  )
   const enabled = isAdsenseEnabled()
 
   useEffect(() => {
@@ -50,10 +52,10 @@ export function GoogleAdSenseUnit({
 
     loadAdsenseScript()
       .then(() => {
-        if (!cancelled) setScriptLoaded(true)
+        if (!cancelled) setLoadState('ready')
       })
       .catch(() => {
-        /* Script blocked or network error — slot stays hidden */
+        if (!cancelled) setLoadState('error')
       })
 
     return () => {
@@ -62,7 +64,7 @@ export function GoogleAdSenseUnit({
   }, [enabled])
 
   useEffect(() => {
-    if (!enabled || !scriptLoaded || pushed.current) return
+    if (!enabled || loadState !== 'ready' || pushed.current) return
 
     let cancelled = false
 
@@ -74,7 +76,7 @@ export function GoogleAdSenseUnit({
           window.adsbygoogle.push({})
           pushed.current = true
         } catch {
-          /* AdSense push failed */
+          if (!cancelled) setLoadState('error')
         }
       })
     })
@@ -82,7 +84,7 @@ export function GoogleAdSenseUnit({
     return () => {
       cancelled = true
     }
-  }, [enabled, scriptLoaded])
+  }, [enabled, loadState])
 
   const isFluid = format === 'fluid'
   const adMaxHeight = isCard ? 480 : maxHeightPx
@@ -95,11 +97,7 @@ export function GoogleAdSenseUnit({
       } as const)
     : ({ display: 'block' } as const)
 
-  if (!enabled) {
-    return null
-  }
-
-  if (!scriptLoaded) {
+  if (!enabled || loadState !== 'ready') {
     return null
   }
 
