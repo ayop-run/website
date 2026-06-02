@@ -107,8 +107,7 @@ export function GoogleAdSenseUnit({
                 AdSense
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                Set{' '}
-                <code className="text-foreground">NEXT_PUBLIC_ENABLE_ADSENSE=true</code>
+                Shown in production only
               </p>
             </div>
           </div>
@@ -130,10 +129,7 @@ export function GoogleAdSenseUnit({
           AdSense
         </p>
         <p className="mt-1 text-xs text-muted-foreground">
-          Add{' '}
-          <code className="text-foreground">NEXT_PUBLIC_ENABLE_ADSENSE=true</code>{' '}
-          to <code className="text-foreground">.env.local</code> and restart{' '}
-          <code className="text-foreground">yarn dev</code>.
+          Shown in production only
         </p>
       </div>
     )
