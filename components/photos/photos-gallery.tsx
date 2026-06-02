@@ -22,6 +22,7 @@ import {
   type PhotoDto,
 } from '@/lib/photos/client'
 import { trackOpenPhotoAlbum } from '@/lib/analytics'
+import { ADSENSE_PHOTOS_SLOT, isAdsenseEnabled } from '@/lib/adsense'
 import { GoogleAdSenseUnit } from '@/components/google-adsense-unit'
 
 function buildQuery(params: {
@@ -355,6 +356,7 @@ export function PhotosGallery() {
   }
 
   const adminUnlocked = sessionState === 'admin'
+  const showAds = isAdsenseEnabled()
   const yearButtons = [...FILTER_YEARS].map((y) => Number(y)).sort((a, b) => b - a)
 
   return (
@@ -490,10 +492,10 @@ export function PhotosGallery() {
             >
               {filteredAlbums.map((photo, index) => (
                 <Fragment key={photo.id}>
-                  {index === 4 && (
+                  {showAds && index === 4 && (
                     <GoogleAdSenseUnit
                       key="photos-gallery-ad"
-                      slot="4397008214"
+                      slot={ADSENSE_PHOTOS_SLOT}
                       variant="card"
                     />
                   )}
@@ -503,8 +505,8 @@ export function PhotosGallery() {
                   />
                 </Fragment>
               ))}
-              {filteredAlbums.length > 0 && filteredAlbums.length <= 4 && (
-                <GoogleAdSenseUnit slot="4397008214" variant="card" />
+              {showAds && filteredAlbums.length > 0 && filteredAlbums.length <= 4 && (
+                <GoogleAdSenseUnit slot={ADSENSE_PHOTOS_SLOT} variant="card" />
               )}
             </div>
           )}

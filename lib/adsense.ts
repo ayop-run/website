@@ -4,3 +4,6 @@ export function isAdsenseEnabled(): boolean {
 }
 
 export const ADSENSE_CLIENT = 'ca-pub-1276789561645653'
+
+/** In-feed autorelaxed unit on /photos gallery grid. */
+export const ADSENSE_PHOTOS_SLOT = '5523907536'

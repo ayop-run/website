@@ -15,6 +15,7 @@ type AdStatus = 'waiting' | 'script-loaded' | 'pushed' | 'error'
 type GoogleAdSenseUnitProps = {
   slot: string
   format?: string
+  /** Required for `fluid` in-feed units only. */
   layoutKey?: string
   /** Cap fluid ad height (Google max is 1200px). */
   maxHeightPx?: number
@@ -25,8 +26,8 @@ type GoogleAdSenseUnitProps = {
 
 export function GoogleAdSenseUnit({
   slot,
-  format = 'fluid',
-  layoutKey = '+1z+rz-g-n+31',
+  format = 'autorelaxed',
+  layoutKey,
   maxHeightPx = 600,
   variant = 'banner',
   className,
@@ -86,13 +87,16 @@ export function GoogleAdSenseUnit({
     return () => window.clearTimeout(t)
   }, [enabled])
 
+  const isFluid = format === 'fluid'
   const adMaxHeight = isCard ? 480 : maxHeightPx
-  const adStyle = {
-    display: 'block',
-    width: '100%',
-    maxHeight: `${adMaxHeight}px`,
-    overflow: 'hidden',
-  } as const
+  const adStyle = isFluid
+    ? ({
+        display: 'block',
+        width: '100%',
+        maxHeight: `${adMaxHeight}px`,
+        overflow: 'hidden',
+      } as const)
+    : ({ display: 'block' } as const)
 
   if (!enabled) {
     if (isCard) {
@@ -142,13 +146,13 @@ export function GoogleAdSenseUnit({
           ? 'relative flex aspect-square w-full items-center justify-center overflow-hidden bg-secondary'
           : 'w-full overflow-hidden'
       }
-      style={isCard ? undefined : { maxHeight: `${adMaxHeight}px` }}
+      style={isFluid && !isCard ? { maxHeight: `${adMaxHeight}px` } : undefined}
     >
       <ins
         className="adsbygoogle"
         style={adStyle}
         data-ad-format={format}
-        data-ad-layout-key={layoutKey}
+        {...(layoutKey ? { 'data-ad-layout-key': layoutKey } : {})}
         data-ad-client={ADSENSE_CLIENT}
         data-ad-slot={slot}
       />
