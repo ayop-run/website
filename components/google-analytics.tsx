@@ -9,6 +9,7 @@ export function GoogleAnalytics() {
 
   return (
     <>
+      <Script id="google-adsense" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1276789561645653" strategy="afterInteractive" crossOrigin="anonymous" />
       <Script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -22,7 +23,6 @@ export function GoogleAnalytics() {
           gtag('config', '${GA_MEASUREMENT_ID}');
         `}
       </Script>
-      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1276789561645653" strategy="afterInteractive" crossOrigin="anonymous" />
     </>
   )
 }
