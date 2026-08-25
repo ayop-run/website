@@ -20,6 +20,11 @@ export const socialLinks = [
     link: 'https://www.strava.com/clubs/1235607',
   },
   {
+    id: 'luma',
+    title: 'Luma',
+    link: 'https://luma.com/ayop.run',
+  },
+  {
     id: 'email',
     title: 'Email',
     link: 'mailto:hello@ayop.run',
@@ -69,7 +74,7 @@ export const activities: Activity[] = [
     title: 'Own Pace Monday',
     shortTitle: 'Track',
     description: 'Every Monday at 7pm, we deliver structured, coach-led interval training that builds rhythm, consistency, and long-term progress — together on the track.',
-    details: 'Open to all levels. Scaled to your pace.',
+    details: 'For regular members who commit to showing up and building the community. Not a drop-in social run.',
     schedule: 'Every Monday at 19:00',
     location: 'Kreuzberg-Neukölln District',
     imageUrl: '/images/track.jpg',
@@ -87,17 +92,17 @@ faqs: [
   {
     question: 'How can I join a session?',
     answer:
-      'You can join by RSVPing through our Strava and showing up at the session.\n\nAll upcoming runs and training schedules are shared on Strava. If you have any questions before joining, feel free to reach out to us on Instagram.',
+      'You can RSVP through our Luma and showing up at the session.\n\nTrack sessions are for regular members who commit to training with us and building the community — not a one-off social run. If you have any questions before joining, feel free to reach out to us on Instagram.',
   },
   {
     question: 'Are beginners welcome?',
     answer:
-      'Absolutely. The sessions are open to runners of all levels.\n\nMost sessions are divided into three groups — Performance, Development, and Finish — so everyone can train comfortably at their own pace. We also include warm-up and cool-down routines in every session and do all together.',
+      'Yes, all paces are welcome. Sessions are divided into three groups — Performance, Development, and Finish — so everyone can train comfortably at their own pace, with warm-up and cool-down done together.\n\nWhat we ask in return is commitment: this is a training community for people who plan to keep showing up, not a casual drop-in run.',
   },
   {
     question: 'What kind of races do you train for?',
     answer:
-      'We mainly prepare for major Berlin races including the Berlin Half Marathon, Berlin Marathon, and various 10K events throughout the year.\n\nThat said, there is no pressure to race. You are welcome to join simply to enjoy running, improve fitness, or train toward your own personal goals.',
+      'We mainly prepare for major Berlin races including the Berlin Half Marathon, Berlin Marathon, and various 10K events throughout the year.\n\nRacing isn\'t required, but showing up for each other is part of the deal — on race day, the community comes out to cheer on members who are running.',
   },
   {
     question: 'Where do sessions take place?',
@@ -107,7 +112,7 @@ faqs: [
   {
     question: 'What should I bring, and how can I stay updated?',
     answer:
-      'Bring your running shoes, water, comfortable sportswear, and positive energy.\n\nTo stay updated on weekly sessions, announcements, and community events, follow AYOP on Instagram and Strava.',
+      'Bring your running shoes, water, comfortable sportswear, and positive energy.\n\nRSVP for sessions on Luma. To stay updated and see the club in action, follow AYOP on Instagram and Strava.',
   },
   {
     question: 'How can I contribute to the community?',
@@ -142,7 +147,7 @@ faqs: [
       groups: [
         {
           category: 'Sportswear',
-          brands: ['Klättermusen', 'lululemon', 'ON Running', '4T2', 'Passenger Clothing', 'HOKA'],
+          brands: ['lululemon', 'Passenger Clothing', 'Klättermusen', 'ON Running', '4T2', 'HOKA', 'Saucony'],
         },
         {
           category: 'Sports Nutrition',
@@ -158,7 +163,7 @@ faqs: [
         },
         {
           category: 'Sports Wearable Devices',
-          brands: ['Miiego'],
+          brands: ['Shokz', 'Miiego'],
         },
       ],
     },
@@ -166,7 +171,7 @@ faqs: [
 ]
 
 export type ActivitiesPageCtaLink = {
-  socialId: 'instagram' | 'strava' | 'email'
+  socialId: 'instagram' | 'strava' | 'email' | 'luma'
   primary?: boolean
 }
 
@@ -183,8 +188,8 @@ export const activitiesPageContent = {
   description:
     'Weekly rituals and monthly journeys — designed to build consistency, connection, and culture.',
   joinLink: {
-    label: 'Join session',
-    socialId: 'strava' as const,
+    label: 'RSVP',
+    socialId: 'luma' as const,
   },
   metaLabels: {
     when: 'When',
@@ -199,12 +204,13 @@ export const activitiesPageContent = {
       eyebrow: 'For Runners',
       title: 'Run with us.',
       body: [
-        'Show up. Move together. No matter your pace.',
-        'An open community built for everyone, with care.', // pace 반복 제거
+        'Show up, commit, and grow with the group — no matter your pace.',
+        'This is for regular members building the community, not a one-off social run.',
       ],
       links: [
         { socialId: 'instagram', primary: false },
-        { socialId: 'strava', primary: true },
+        { socialId: 'strava', primary: false },
+        { socialId: 'luma', primary: true },
       ],
     },
     collaborations: {
